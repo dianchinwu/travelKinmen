@@ -57,9 +57,9 @@
   .timeline{position:relative}
   .timeline::before{content:'';position:absolute;left:40px;top:0;bottom:0;width:2px}
   .stop{display:flex;gap:24px;padding:0 0 32px 0;position:relative}
-  .stop-left{width:80px;flex-shrink:0;text-align:right;padding-top:4px;position:relative}
-  .stop-dot{position:absolute;right:-12px;top:8px;width:22px;height:22px;border-radius:50%;border:3px solid #fff;z-index:1;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff}
-  .stop-time{margin-left:3em;font-size:12px;font-weight:500;letter-spacing:1px;color:var(--stone-light)}
+  .stop-left{width:96px;flex-shrink:0;text-align:right;padding-top:4px;position:relative}
+  
+  .stop-depart{font-size:12px;font-weight:600;letter-spacing:1px;color:var(--stone);line-height:1.3}.stop-arrive{font-size:11px;letter-spacing:1px;color:var(--stone-light);line-height:1.3}.stop-time-label{font-size:9px;letter-spacing:1px;color:var(--stone-light);opacity:0.7}
   .stop-card{flex:1;border-radius:12px;padding:16px 20px;transition:transform 0.2s,box-shadow 0.2s}
   .stop-card:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.1)}
   .stop-name{font-family:'Noto Serif TC',serif;font-size:17px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
@@ -76,7 +76,7 @@
   .day1-section .day-divider{background:var(--sorghum)}
   .day1-section .day-title-block h2{color:var(--sorghum)}
   .day1-section .timeline::before{background:rgba(139,37,0,0.2)}
-  .day1-section .stop-dot{background:var(--sorghum)}
+  .day1-section 
   .day1-section .stop-card{background:#fff;box-shadow:0 2px 12px rgba(139,37,0,0.08)}
   .day1-section .stop-note{border-color:var(--sorghum-light);color:var(--sorghum)}
   .day1-section .highlight-tag{background:var(--sorghum);color:#fff}
@@ -86,7 +86,7 @@
   .day2-section .day-divider{background:var(--ocean)}
   .day2-section .day-title-block h2{color:var(--ocean)}
   .day2-section .timeline::before{background:rgba(27,79,114,0.2)}
-  .day2-section .stop-dot{background:var(--ocean)}
+  .day2-section 
   .day2-section .stop-card{background:#fff;box-shadow:0 2px 12px rgba(27,79,114,0.08)}
   .day2-section .stop-note{border-color:var(--ocean-mid);color:var(--ocean)}
   .day2-section .highlight-tag{background:var(--ocean);color:#fff}
@@ -96,7 +96,7 @@
   .day3-section .day-divider{background:var(--gold)}
   .day3-section .day-title-block h2{color:var(--stone)}
   .day3-section .timeline::before{background:rgba(201,168,76,0.3)}
-  .day3-section .stop-dot{background:var(--gold)}
+  .day3-section 
   .day3-section .stop-card{background:#fff;box-shadow:0 2px 12px rgba(201,168,76,0.1)}
   .day3-section .stop-note{border-color:var(--gold);color:var(--stone)}
   .day3-section .highlight-tag{background:var(--gold);color:#fff}
@@ -105,9 +105,39 @@
   .pdf-btn{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--sorghum),var(--sorghum-light));color:#fff;border:none;padding:16px 28px;border-radius:50px;font-family:'Noto Sans TC',sans-serif;font-size:15px;font-weight:500;cursor:pointer;box-shadow:0 6px 30px rgba(139,37,0,0.35);transition:transform 0.2s,box-shadow 0.2s;letter-spacing:1px}
   .pdf-btn:hover{transform:translateY(-3px);box-shadow:0 10px 40px rgba(139,37,0,0.45)}
   .footer{background:var(--dark);color:rgba(255,255,255,0.5);text-align:center;padding:40px 20px;font-size:13px;letter-spacing:1px}
-  @media(max-width:600px){.timeline::before{left:28px}.stop-left{width:56px}.stop-dot{right:-8px;width:16px;height:16px}.day-badge{width:64px;height:64px}.day-badge .day-num{font-size:22px}.pdf-btn-wrap{bottom:16px;right:16px}.pdf-btn{padding:12px 20px;font-size:14px}}
+  @media(max-width:600px){.timeline::before{left:28px}.stop-left{width:56px}.day-badge{width:64px;height:64px}.day-badge .day-num{font-size:22px}.pdf-btn-wrap{bottom:16px;right:16px}.pdf-btn{padding:12px 20px;font-size:14px}}
   @media print{.pdf-btn-wrap{display:none}.hero{height:40vh;min-height:300px}}
-  .stop-dot {display: none;}
+
+
+  .stop-depart{font-size:11px;font-weight:700;letter-spacing:0.5px;color:var(--stone);line-height:1.5;white-space:nowrap}
+  .stop-arrive{font-size:11px;letter-spacing:0.5px;color:var(--stone-light);line-height:1.5;white-space:nowrap}
+  .stop-left{display:flex;flex-direction:column;align-items:flex-end;justify-content:flex-start;gap:0}
+
+  /* All screens: stop-left vertically centered with the card beside it */
+  .stop{align-items:center;}
+  .stop-left{
+    background:rgba(253,250,244,0.92);
+    border-radius:8px;
+    padding:6px 10px;
+    z-index:1;
+  }
+  .day1-section .stop-left{background:rgba(245,240,232,0.93);}
+  .day2-section .stop-left{background:rgba(234,242,251,0.93);}
+  .day3-section .stop-left{background:rgba(251,246,236,0.93);}
+
+  /* Google Maps link button */
+  .map-link{
+    display:inline-flex;align-items:center;gap:5px;
+    margin-top:8px;font-size:12px;font-weight:500;
+    color:#555;text-decoration:none;
+    background:rgba(100,100,100,0.07);
+    border:1px solid rgba(100,100,100,0.2);
+    border-radius:20px;padding:3px 10px;
+    transition:background 0.2s,border-color 0.2s;
+    width:fit-content;
+  }
+  .map-link:hover{background:rgba(100,100,100,0.14);border-color:rgba(100,100,100,0.35);}
+  .map-link svg{flex-shrink:0;}
 </style>
 </head>
 <body>
@@ -276,58 +306,70 @@
 
     <div class="timeline">
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">12:05</div><div class="stop-dot">✈</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 —</div><div class="stop-arrive">抵達 12:05</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>✈️</span>金門機場</div>
           <div class="stop-meta"><span class="meta-pill">⏱ 停留 60 分</span><span class="meta-pill">🚗 取車</span></div>
           <div class="stop-note">取行李 + 車（預計租車時間 12:30）</div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=金門機場+Kinmen+Airport" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 金門機場</a>
         </div>
       </div>
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">13:05</div><div class="stop-dot">🦪</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 13:05</div><div class="stop-arrive">抵達 13:17</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>🦪</span>石蚵之家</div>
           <div class="stop-meta"><span class="meta-pill">🚗 8.3 km · 12 分</span><span class="meta-pill">⏱ 停留 60 分</span></div>
           <div class="stop-address">📍 892 金門縣金寧鄉古寧村林厝50號之6號</div>
           <div class="stop-note">或去馬家麵線、石蚵之家、聯泰餐廳、金門牛家莊</div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=石蚵之家+金門縣金寧鄉古寧村林厝50號之6號" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 石蚵之家</a>
         </div>
       </div>
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">14:27</div><div class="stop-dot">🏝</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 14:27</div><div class="stop-arrive">抵達 14:40</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>🏝️</span>建功嶼</div>
           <div class="stop-meta"><span class="meta-pill">🚗 7.4 km · 13 分</span><span class="meta-pill">⏱ 停留 30 分</span></div>
           <div class="stop-address">📍 導航延平郡王祠旁邊</div>
           <div class="stop-note">🕑 1455–1555 可過</div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=建功嶼+金門" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 建功嶼</a>
         </div>
       </div>
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">15:10</div><div class="stop-dot">🛖</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 15:10</div><div class="stop-arrive">抵達 15:19</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>🛖</span>微醺民宿</div>
           <div class="stop-meta"><span class="meta-pill">🚗 3.9 km · 9 分</span><span class="meta-pill">⏱ 停留 60 分</span></div>
           <div class="stop-address">📍 893 金門縣金城鎮（TipsyHotel）</div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=金門微醺民宿+TipsyHotel+金城鎮" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 微醺民宿</a>
         </div>
       </div>
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">16:19</div><div class="stop-dot">🏯</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 16:19</div><div class="stop-arrive">抵達 16:24</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>🏯</span>得月樓</div>
           <div class="stop-meta"><span class="meta-pill">🚗 1.5 km · 5 分</span><span class="meta-pill">⏱ 停留 60 分</span></div>
           <div class="stop-address">📍 893 金門縣金城鎮金水里前水頭45號</div>
           <div class="stop-note">⚠️ 停車未查</div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=得月樓+金門縣金城鎮金水里前水頭45號" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 得月樓</a>
         </div>
       </div>
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">17:24</div><div class="stop-dot">🍜</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 17:24</div><div class="stop-arrive">抵達 17:40</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>🌿</span>紫微庭園美食 <span class="highlight-tag">待訂位</span></div>
           <div class="stop-meta"><span class="meta-pill">🚗 8.3 km · 16 分</span><span class="meta-pill">⏱ 停留 90 分</span></div>
           <div class="stop-address">📍 892 金門縣金寧鄉后盤山35號</div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=紫微庭園美食+金門縣金寧鄉后盤山35號" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 紫微庭園美食</a>
         </div>
       </div>
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">19:10</div><div class="stop-dot">🌃</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 19:10</div><div class="stop-arrive">抵達 19:21</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>🌃</span>夜景選項（三擇一）</div>
           <div class="options-block">
@@ -335,6 +377,8 @@
             <div class="option-row"><span class="option-tag">選項2</span><span>🌉 <b>金門大橋</b>（廈門夜景）— 892 金門縣金寧鄉慈湖路二段</span></div>
             <div class="option-row"><span class="option-tag">選項3</span><span>☕ <b>同安渡船頭 / 慈湖海堤</b>（咖啡廳看海走沙灘，順便賭藍眼淚）— 892 金門縣金寧鄉</span></div>
           </div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=莒光樓+金門縣金城鎮東門里賢城路1號" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 莒光樓（夜景選項）</a>
         </div>
       </div>
     </div>
@@ -452,60 +496,74 @@
 
     <div class="timeline">
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">10:00</div><div class="stop-dot">⛵</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 —</div><div class="stop-arrive">抵達 10:00</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>⛵</span>翟山坑道</div>
           <div class="stop-meta"><span class="meta-pill">⏱ 停留 60 分</span></div>
           <div class="stop-address">📍 893 金門縣金城鎮90號</div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=翟山坑道+金門縣金城鎮90號" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 翟山坑道</a>
         </div>
       </div>
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">11:06</div><div class="stop-dot">🛍</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 11:06</div><div class="stop-arrive">抵達 11:26</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>🛍️</span>合泉購物中心</div>
           <div class="stop-meta"><span class="meta-pill">🚗 12.0 km · 20 分</span><span class="meta-pill">⏱ 停留 60 分</span><span class="meta-pill">🍜 金拌麵</span></div>
           <div class="stop-address">📍 891 金門縣金湖鎮瓊林里63號</div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=合泉購物中心+金門縣金湖鎮瓊林里63號" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 合泉購物中心</a>
         </div>
       </div>
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">12:56</div><div class="stop-dot">🏛</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 12:56</div><div class="stop-arrive">抵達 13:02</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>🏛️</span>陳景蘭洋樓</div>
           <div class="stop-meta"><span class="meta-pill">🚗 1.9 km · 6 分</span><span class="meta-pill">⏱ 停留 40 分</span></div>
           <div class="stop-address">📍 891 金門縣金湖鎮</div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=陳景蘭洋樓+金門縣金湖鎮" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 陳景蘭洋樓</a>
         </div>
       </div>
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">13:42</div><div class="stop-dot">🚌</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 13:42</div><div class="stop-arrive">抵達 13:48</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>🚌</span>山外車站</div>
           <div class="stop-meta"><span class="meta-pill">🚗 3.4 km · 6 分</span><span class="meta-pill">⏱ 停留 170 分</span></div>
           <div class="stop-address">📍 891 金門縣金湖鎮山外里黃海路90之1號</div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=山外車站+金門縣金湖鎮山外里黃海路90之1號" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 山外車站</a>
         </div>
       </div>
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">16:38</div><div class="stop-dot">🍶</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 16:38</div><div class="stop-arrive">抵達 16:40</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>🍶</span>良金牧場工廠總店 <span class="highlight-tag">待訂位</span></div>
           <div class="stop-meta"><span class="meta-pill">🚗 1.3 km · 2 分</span><span class="meta-pill">⏱ 停留 90 分</span></div>
           <div class="stop-address">📍 891 金門縣金湖鎮瓊林里魚村160號</div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=良金牧場工廠總店+金門縣金湖鎮瓊林里魚村160號" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 良金牧場</a>
         </div>
       </div>
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">18:10</div><div class="stop-dot">🌅</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 18:10</div><div class="stop-arrive">抵達 18:15</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>🌅</span>成功沙灘</div>
           <div class="stop-meta"><span class="meta-pill">🚗 2.2 km · 5 分</span><span class="meta-pill">🌇 看夕陽</span></div>
           <div class="stop-address">📍 891 金門縣金湖鎮</div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=成功沙灘+金門縣金湖鎮" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 成功沙灘</a>
         </div>
       </div>
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">18:55</div><div class="stop-dot">🎖</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 18:55</div><div class="stop-arrive">抵達 19:09</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>🎖️</span>清金門鎮總兵署（浯江新莊）</div>
           <div class="stop-meta"><span class="meta-pill">🚗 8.5 km · 14 分</span><span class="meta-pill">⏱ 停留 120 分</span></div>
           <div class="stop-address">📍 893 金門縣金城鎮北門里浯江街53號</div>
           <div class="stop-note">19:30 有導覽，導遊會一直說，累了可以直接走掉 / 看要不要順便買伴手禮</div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=清金門鎮總兵署+金門縣金城鎮北門里浯江街53號" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 清金門鎮總兵署</a>
         </div>
       </div>
     </div>
@@ -622,68 +680,84 @@
 
     <div class="timeline">
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">08:00</div><div class="stop-dot">🚢</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 08:00</div><div class="stop-arrive">抵達 08:21</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>🏰</span>勇士堡</div>
           <div class="stop-meta"><span class="meta-pill">🚗 13.4 km · 21 分</span><span class="meta-pill">⏱ 停留 90 分</span></div>
           <div class="stop-address">📍 894 金門縣烈嶼鄉（停車後可從地下通道走到鐵漢堡）</div>
           <div class="stop-note">搭 8:25 台灣好行繞烈嶼，回來買伴手禮</div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=勇士堡+金門縣烈嶼鄉" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 勇士堡</a>
         </div>
       </div>
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">09:51</div><div class="stop-dot">🌊</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 09:51</div><div class="stop-arrive">抵達 09:57</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>🌊</span>雙口海灘</div>
           <div class="stop-meta"><span class="meta-pill">🚗 3.3 km · 6 分</span><span class="meta-pill">⏱ 停留 20 分</span></div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=雙口海灘+金門縣烈嶼鄉" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 雙口海灘</a>
         </div>
       </div>
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">10:17</div><div class="stop-dot">🏖</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 10:17</div><div class="stop-arrive">抵達 10:28</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>🏖️</span>沙溪堡 <span class="highlight-tag" style="background:#FFF3CD;color:#856404;border:1px solid #FFECB5;">待確認</span></div>
           <div class="stop-meta"><span class="meta-pill">🚗 4.7 km · 11 分</span><span class="meta-pill">⏱ 停留 30 分</span></div>
           <div class="stop-address">📍 894 金門縣濱海大道</div>
           <div class="stop-note">街景看起來好像要走一段，隨機應變</div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=沙溪堡+金門縣烈嶼鄉濱海大道" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 沙溪堡</a>
         </div>
       </div>
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">10:58</div><div class="stop-dot">⛩</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 10:58</div><div class="stop-arrive">抵達 11:14</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>⛩️</span>九宮坑道 <span class="highlight-tag" style="background:#FFF3CD;color:#856404;border:1px solid #FFECB5;">待確認</span></div>
           <div class="stop-meta"><span class="meta-pill">🚗 7.1 km · 16 分</span><span class="meta-pill">⏱ 停留 60 分</span></div>
           <div class="stop-note">沿海走</div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=九宮坑道+金門縣烈嶼鄉" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 九宮坑道</a>
         </div>
       </div>
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">12:14</div><div class="stop-dot">🧱</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 12:14</div><div class="stop-arrive">抵達 12:19</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>🧱</span>將軍堡 <span class="highlight-tag" style="background:#FFF3CD;color:#856404;border:1px solid #FFECB5;">待確認</span></div>
           <div class="stop-meta"><span class="meta-pill">🚗 2.2 km · 5 分</span><span class="meta-pill">⏱ 停留 10 分</span></div>
           <div class="stop-note">和沙溪堡二選一，回金門有點線</div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=將軍堡+金門縣烈嶼鄉" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 將軍堡</a>
         </div>
       </div>
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">12:29</div><div class="stop-dot">🥩</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 12:29</div><div class="stop-arrive">抵達 12:48</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>🐄</span>金門牛家莊（滷牛肉料理）<span class="highlight-tag">待訂位</span></div>
           <div class="stop-meta"><span class="meta-pill">🚗 12.3 km · 19 分</span><span class="meta-pill">⏱ 停留 90 分</span></div>
           <div class="stop-address">📍 893 金門縣金城鎮南門里民族路318巷5號</div>
           <div class="stop-note">待訂位 / 有時間可以再去金城老街或馬家麵線</div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=金門牛家莊+金門縣金城鎮南門里民族路318巷5號" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 金門牛家莊</a>
         </div>
       </div>
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">14:18</div><div class="stop-dot">🐟</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 14:18</div><div class="stop-arrive">抵達 14:32</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>🐟</span>老屋ㄉ蚵嗲</div>
           <div class="stop-meta"><span class="meta-pill">🚗 8.6 km · 14 分</span><span class="meta-pill">⏱ 停留 20 分</span></div>
           <div class="stop-address">📍 891 金門縣金湖鎮正義里成功村64號</div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=老屋蚵嗲+金門縣金湖鎮正義里成功村64號" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 老屋ㄉ蚵嗲</a>
         </div>
       </div>
       <div class="stop">
-        <div class="stop-left"><div class="stop-time">14:52</div><div class="stop-dot">✈</div></div>
+        <div class="stop-left"><div class="stop-depart">出發 14:52</div><div class="stop-arrive">抵達 14:58</div></div>
         <div class="stop-card">
           <div class="stop-name"><span>✈️</span>金門機場（返航）</div>
           <div class="stop-meta"><span class="meta-pill">🚗 3.9 km · 6 分</span><span class="meta-pill">🏠 返回台灣</span></div>
+        
+          <a class="map-link" href="https://maps.google.com/?q=金門機場+Kinmen+Airport" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 金門機場（返航）</a>
         </div>
       </div>
     </div>

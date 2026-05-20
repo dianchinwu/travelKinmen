@@ -59,7 +59,7 @@
   .stop{display:flex;gap:24px;padding:0 0 32px 0;position:relative}
   .stop-left{width:80px;flex-shrink:0;text-align:right;padding-top:4px;position:relative}
   .stop-dot{position:absolute;right:-12px;top:8px;width:22px;height:22px;border-radius:50%;border:3px solid #fff;z-index:1;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff}
-  .stop-time{font-size:12px;font-weight:500;letter-spacing:1px;color:var(--stone-light)}
+  .stop-time{margin-left:3em;font-size:12px;font-weight:500;letter-spacing:1px;color:var(--stone-light)}
   .stop-card{flex:1;border-radius:12px;padding:16px 20px;transition:transform 0.2s,box-shadow 0.2s}
   .stop-card:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.1)}
   .stop-name{font-family:'Noto Serif TC',serif;font-size:17px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
@@ -107,6 +107,7 @@
   .footer{background:var(--dark);color:rgba(255,255,255,0.5);text-align:center;padding:40px 20px;font-size:13px;letter-spacing:1px}
   @media(max-width:600px){.timeline::before{left:28px}.stop-left{width:56px}.stop-dot{right:-8px;width:16px;height:16px}.day-badge{width:64px;height:64px}.day-badge .day-num{font-size:22px}.pdf-btn-wrap{bottom:16px;right:16px}.pdf-btn{padding:12px 20px;font-size:14px}}
   @media print{.pdf-btn-wrap{display:none}.hero{height:40vh;min-height:300px}}
+  .stop-dot {display: none;}
 </style>
 </head>
 <body>
@@ -122,9 +123,9 @@
     <h1 class="hero-title"><span>金</span>門<br>三日遊</h1>
     <p class="hero-sub">烽火歷史 &middot; 高粱酒香 &middot; 海天一色</p>
     <div class="hero-dates">
-      <div class="hero-date-pill">📅 6/12 星期五</div>
-      <div class="hero-date-pill">6/13 星期六</div>
-      <div class="hero-date-pill">6/14 星期日</div>
+      <div class="hero-date-pill"> 6/12 星期五</div>
+      <div class="hero-date-pill"> 6/13 星期六</div>
+      <div class="hero-date-pill"> 6/14 星期日</div>
     </div>
   </div>
   <svg class="waves" viewBox="0 0 1440 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -159,7 +160,7 @@
     <div class="illus-strip">
       <!-- Airport SVG -->
       <div class="illus-card">
-        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
           <rect width="180" height="120" fill="#87CEEB"/>
           <rect y="90" width="180" height="30" fill="#8B7355"/>
           <rect x="55" y="40" width="70" height="50" fill="#F5F5DC" rx="4"/>
@@ -172,12 +173,13 @@
           <circle cx="158" cy="20" r="13" fill="#FFF176" opacity="0.9"/>
           <path d="M30,18 Q35,14 40,18 Q35,22 30,18Z" fill="white" opacity="0.7"/>
           <path d="M140,50 Q148,46 155,50 Q148,54 140,50Z" fill="white" opacity="0.6"/>
-        </svg>
+        </svg> -->
+        <img style="width:100%;" src="https://kinmen.travel/attractions/8373/1024x768_attractions-image-f5qxb5q6ceg0vgufbn3tww.jpg">
         <div class="illus-label">金門機場</div>
       </div>
       <!-- Oyster SVG -->
       <div class="illus-card">
-        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
           <rect width="180" height="120" fill="#0E4D6E"/>
           <path d="M0,85 Q45,70 90,80 Q135,90 180,78 L180,120 L0,120Z" fill="#0A3D54"/>
           <ellipse cx="52" cy="68" rx="30" ry="19" fill="#5D6D7E" transform="rotate(-12,52,68)"/>
@@ -192,12 +194,13 @@
           <text x="90" y="28" text-anchor="middle" fill="#AED6F1" font-size="13" font-family="serif">石蚵之家</text>
           <path d="M20,82 Q45,76 70,82" stroke="#7FB3D3" stroke-width="1.5" fill="none" opacity="0.5"/>
           <path d="M110,75 Q135,69 160,75" stroke="#7FB3D3" stroke-width="1.5" fill="none" opacity="0.5"/>
-        </svg>
+        </svg> -->
+        <img style="width:100%;" src="https://g.udn.com.tw/upfiles/B_VI/visa520infinite/PSN_PHOTO/865/f_29152865_1.jpg">
         <div class="illus-label">石蚵之家</div>
       </div>
       <!-- Islet SVG -->
       <div class="illus-card">
-        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
           <rect width="180" height="120" fill="#1A6EA8"/>
           <path d="M0,90 Q45,78 90,90 Q135,102 180,90 L180,120 L0,120Z" fill="#0E4D6E"/>
           <ellipse cx="90" cy="88" rx="52" ry="20" fill="#8B7355"/>
@@ -209,12 +212,13 @@
           <path d="M15,55 Q28,50 40,55 Q28,60 15,55Z" fill="white" opacity="0.6"/>
           <path d="M130,62 Q145,56 158,62 Q145,67 130,62Z" fill="white" opacity="0.6"/>
           <text x="90" y="108" text-anchor="middle" fill="#AED6F1" font-size="11" font-family="serif">建功嶼</text>
-        </svg>
+        </svg> -->
+        <img style="width:100%;" src="https://kinmen.travel/attractions/10085/1024x768_attractions-image-m5dctxfsdeqgax4aqjv-nw.jpg">
         <div class="illus-label">建功嶼</div>
       </div>
       <!-- Old mansion SVG -->
       <div class="illus-card">
-        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
           <rect width="180" height="120" fill="#F5CBA7"/>
           <rect x="0" y="100" width="180" height="20" fill="#8B7355"/>
           <rect x="22" y="52" width="136" height="58" fill="#FDFAF4"/>
@@ -233,12 +237,13 @@
           <line x1="95" y1="75" x2="117" y2="75" stroke="#5D6D7E" stroke-width="1.5"/>
           <rect x="74" y="88" width="32" height="22" fill="#6D4C1F" rx="2"/>
           <text x="90" y="112" text-anchor="middle" fill="#F5CBA7" font-size="9" font-family="serif">得月樓</text>
-        </svg>
+        </svg> -->
+        <img style="width:100%;" src="https://kinmen.travel/attractions/10077/1024x768_attractions-image-ocbof_okskgcjtqvs2acqw.jpg">
         <div class="illus-label">得月樓</div>
       </div>
       <!-- Night view SVG -->
       <div class="illus-card">
-        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
           <rect width="180" height="120" fill="#0D1B2A"/>
           <circle cx="152" cy="18" r="11" fill="#FFF9C4" opacity="0.9"/>
           <circle cx="18" cy="16" r="3" fill="white" opacity="0.8"/>
@@ -263,7 +268,8 @@
           <rect x="143" y="62" width="6" height="4" fill="#F4D03F" opacity="0.7"/>
           <path d="M0,100 Q45,92 90,100 Q135,108 180,100 L180,120 L0,120Z" fill="#0A4A6E" opacity="0.8"/>
           <path d="M0,108 Q45,102 90,108 Q135,114 180,108 L180,120 L0,120Z" fill="#0D6EAF" opacity="0.5"/>
-        </svg>
+        </svg> -->
+        <img style="width:100%;" src="https://kinmen.travel/attractions/1617/1024x768_image_636361756421000278.jpg">
         <div class="illus-label">金門夜景</div>
       </div>
     </div>
@@ -274,7 +280,7 @@
         <div class="stop-card">
           <div class="stop-name"><span>✈️</span>金門機場</div>
           <div class="stop-meta"><span class="meta-pill">⏱ 停留 60 分</span><span class="meta-pill">🚗 取車</span></div>
-          <div class="stop-note">取貨 + 車（預計租車時間 12:30）</div>
+          <div class="stop-note">取行李 + 車（預計租車時間 12:30）</div>
         </div>
       </div>
       <div class="stop">
@@ -349,7 +355,7 @@
     <div class="illus-strip">
       <!-- Tunnel -->
       <div class="illus-card">
-        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
           <rect width="180" height="120" fill="#1C2833"/>
           <path d="M18,112 L18,48 Q90,8 162,48 L162,112 Z" fill="#2C3E50"/>
           <path d="M34,112 L34,55 Q90,20 146,55 L146,112 Z" fill="#1A252F"/>
@@ -361,12 +367,13 @@
           <circle cx="72" cy="67" r="2" fill="#FFF176" opacity="0.5"/>
           <circle cx="108" cy="67" r="2" fill="#FFF176" opacity="0.5"/>
           <text x="90" y="20" text-anchor="middle" fill="#AED6F1" font-size="12" font-family="serif">翟山坑道</text>
-        </svg>
+        </svg> -->
+        <img style="width:100%;" src="https://kinmen.travel/attractions/9540/1024x768_attractions-image-pz09mwf4tecqmoa2c_lsja.jpg">
         <div class="illus-label">翟山坑道</div>
       </div>
       <!-- Shopping -->
       <div class="illus-card">
-        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
           <rect width="180" height="120" fill="#FEF9F0"/>
           <rect x="12" y="38" width="156" height="72" fill="#FDFEFE" rx="6"/>
           <rect x="12" y="38" width="156" height="18" fill="#C0392B" rx="6"/>
@@ -380,12 +387,13 @@
           <circle cx="58" cy="33" r="4" fill="#7D6608"/>
           <circle cx="122" cy="33" r="4" fill="#7D6608"/>
           <text x="90" y="50" text-anchor="middle" fill="white" font-size="9" font-weight="bold">合泉購物中心</text>
-        </svg>
+        </svg> -->
+        <img style="width:100%;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6-3Obnlt3Ax_4dGrTq37A0Ge39xqHeshzng&s">
         <div class="illus-label">合泉購物中心</div>
       </div>
       <!-- Western mansion -->
       <div class="illus-card">
-        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
           <rect width="180" height="120" fill="#D5E8D4"/>
           <rect x="0" y="98" width="180" height="22" fill="#5D8A4C" opacity="0.6"/>
           <rect x="22" y="34" width="136" height="68" fill="#F5CBA7"/>
@@ -399,12 +407,13 @@
           <rect x="33" y="18" width="4" height="12" fill="#F4D03F"/>
           <rect x="143" y="18" width="4" height="12" fill="#F4D03F"/>
           <text x="90" y="112" text-anchor="middle" fill="#145A32" font-size="10" font-family="serif">陳景蘭洋樓</text>
-        </svg>
+        </svg> -->
+        <img style="width:100%;" src="https://kinmen.travel/attractions/10268/1024x768_attractions-image-l93tst8ft0kznwwxrywjvw.jpg">
         <div class="illus-label">陳景蘭洋樓</div>
       </div>
       <!-- Sunset beach -->
       <div class="illus-card">
-        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF6B35"/><stop offset="50%" stop-color="#FFB347"/><stop offset="100%" stop-color="#FFD700"/></linearGradient></defs>
           <rect width="180" height="120" fill="url(#sky2)"/>
           <circle cx="90" cy="68" r="26" fill="#FFF176" opacity="0.95"/>
@@ -413,12 +422,13 @@
           <path d="M0,96 Q45,91 90,96 Q135,101 180,96 L180,120 L0,120Z" fill="#42A5F5" opacity="0.5"/>
           <path d="M58,68 L90,68 L122,68" stroke="#FFF9C4" stroke-width="2.5" opacity="0.7"/>
           <ellipse cx="90" cy="114" rx="68" ry="7" fill="#C4A265"/>
-        </svg>
+        </svg> -->
+        <img style="width:100%;" src="https://kinmen.travel/attractions/9554/1024x768_attractions-image-x-nqxsxygkkx84suoy2xiq.jpg">
         <div class="illus-label">成功沙灘夕陽</div>
       </div>
       <!-- Military -->
       <div class="illus-card">
-        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
           <rect width="180" height="120" fill="#212F3D"/>
           <rect x="0" y="90" width="180" height="30" fill="#1A252F"/>
           <rect x="18" y="46" width="144" height="52" fill="#2E4053"/>
@@ -434,7 +444,8 @@
           <circle cx="28" cy="28" r="2.5" fill="white" opacity="0.5"/>
           <circle cx="58" cy="20" r="2" fill="white" opacity="0.4"/>
           <text x="90" y="108" text-anchor="middle" fill="#AED6F1" font-size="8" font-family="serif">清金門鎮總兵署</text>
-        </svg>
+        </svg> -->
+        <img style="width:100%;" src="https://kinmen.travel/attractions/10493/1024x768_attractions-image--d10ppfmikggmuol0wnula.jpg">
         <div class="illus-label">清金門鎮總兵署</div>
       </div>
     </div>
@@ -515,7 +526,7 @@
     <div class="illus-strip">
       <!-- Fort -->
       <div class="illus-card">
-        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
           <rect width="180" height="120" fill="#7DCEA0"/>
           <rect x="0" y="92" width="180" height="28" fill="#5D8A4C"/>
           <rect x="28" y="28" width="124" height="68" fill="#ABEBC6" rx="3"/>
@@ -530,12 +541,13 @@
           <polygon points="87,8 93,8 90,0" fill="#C0392B"/>
           <path d="M0,90 Q45,82 90,90 Q135,98 180,90" stroke="#1A6EA8" stroke-width="2" fill="none" opacity="0.4"/>
           <text x="90" y="46" text-anchor="middle" fill="#145A32" font-size="10" font-weight="bold">勇士堡</text>
-        </svg>
+        </svg> -->
+        <img style="width:100%;" src="https://kinmen.travel/attractions/10401/1024x768_attractions-image-qrhrclp1pukltcclcfardg.jpg">
         <div class="illus-label">勇士堡</div>
       </div>
       <!-- Beach -->
       <div class="illus-card">
-        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="sky3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#85C1E9"/><stop offset="100%" stop-color="#AED6F1"/></linearGradient></defs>
           <rect width="180" height="120" fill="url(#sky3)"/>
           <circle cx="148" cy="22" r="16" fill="white" opacity="0.8"/>
@@ -547,12 +559,13 @@
           <path d="M8,68 Q28,62 48,68" stroke="white" stroke-width="2" fill="none" opacity="0.55"/>
           <path d="M112,75 Q135,68 158,75" stroke="white" stroke-width="2" fill="none" opacity="0.55"/>
           <text x="90" y="52" text-anchor="middle" fill="#1A4F6E" font-size="11" font-family="serif">雙口海灘</text>
-        </svg>
+        </svg> -->
+        <img style="width:100%;" src="https://kinmen.travel/attractions/37269/1024x768_attractions-image-_zc4wltahka7x9qnu5bppg.jpg">
         <div class="illus-label">雙口海灘</div>
       </div>
       <!-- Tunnel 9 -->
       <div class="illus-card">
-        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
           <rect width="180" height="120" fill="#5D6D7E"/>
           <rect x="0" y="96" width="180" height="24" fill="#3D4F5D"/>
           <path d="M8,112 L8,38 Q90,-8 172,38 L172,112 Z" fill="#4A5568"/>
@@ -562,12 +575,13 @@
           <circle cx="90" cy="63" r="4" fill="#FFF9C4" opacity="0.6"/>
           <path d="M0,96 Q45,89 90,96 Q135,103 180,96 L180,120 L0,120Z" fill="#1A6EA8" opacity="0.45"/>
           <text x="90" y="22" text-anchor="middle" fill="#AED6F1" font-size="11" font-family="serif">九宮坑道</text>
-        </svg>
+        </svg> -->
+        <img style="width:100%;" src="https://kinmen.travel/attractions/10394/1024x768_attractions-image-56ehnm1eykq1x8pcmgkkzw.jpg">
         <div class="illus-label">九宮坑道</div>
       </div>
       <!-- Beef -->
       <div class="illus-card">
-        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
           <rect width="180" height="120" fill="#FEF5E7"/>
           <ellipse cx="90" cy="82" rx="66" ry="28" fill="#E8DAAD"/>
           <ellipse cx="90" cy="76" rx="55" ry="21" fill="#F5CBA7"/>
@@ -580,12 +594,13 @@
           <ellipse cx="90" cy="30" rx="22" ry="14" fill="#82E0AA"/>
           <text x="90" y="34" text-anchor="middle" fill="#145A32" font-size="9" font-weight="bold">滷牛肉</text>
           <text x="90" y="110" text-anchor="middle" fill="#7D6608" font-size="10" font-family="serif">金門牛家莊</text>
-        </svg>
+        </svg> -->
+        <img style="width:100%;" src="https://yuann.tw/archive/5038/14001503213_2a58bf5bb4_b.jpg">
         <div class="illus-label">金門牛家莊</div>
       </div>
       <!-- Departure plane -->
       <div class="illus-card">
-        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="sky4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1A6EA8"/><stop offset="60%" stop-color="#5DADE2"/><stop offset="100%" stop-color="#AED6F1"/></linearGradient></defs>
           <rect width="180" height="120" fill="url(#sky4)"/>
           <path d="M18,70 L62,57 L94,50 L134,53 L154,58 L94,62 Z" fill="#BDC3C7"/>
@@ -599,8 +614,9 @@
           <circle cx="22" cy="18" r="3" fill="white" opacity="0.7"/>
           <circle cx="50" cy="10" r="2" fill="white" opacity="0.6"/>
           <text x="90" y="112" text-anchor="middle" fill="#AED6F1" font-size="10" font-family="serif">返回台灣</text>
-        </svg>
-        <div class="illus-label">金門返航</div>
+        </svg> -->
+        <img style="width:100%;" src="https://kinmen.travel/attractions/36423/1024x768_attractions-image-jgcrfzgno0ifzi20xdo7ha.jpg">
+        <div class="illus-label">金城老街</div>
       </div>
     </div>
 

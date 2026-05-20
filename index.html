@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金門旅遊行程 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700;900&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+  :root{--sand:#E8D5B0;--sand-light:#F5ECD7;--ocean:#1B4F72;--ocean-mid:#2874A6;--ocean-light:#AED6F1;--sorghum:#8B2500;--sorghum-light:#C0392B;--gold:#C9A84C;--gold-light:#F0D080;--stone:#5D5341;--stone-light:#8C7B65;--cream:#FDFAF4;--dark:#1A1208}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--cream);color:var(--dark);font-family:'Noto Sans TC',sans-serif;overflow-x:hidden}
+  .hero{position:relative;height:100vh;min-height:600px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(160deg,#0A2A4A 0%,#1B4F72 40%,#5D8AA8 70%,#C9A84C 100%)}
+  .hero-bg{position:absolute;inset:0;background-image:radial-gradient(ellipse at 20% 80%,rgba(201,168,76,0.25) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(43,116,166,0.3) 0%,transparent 50%)}
+  .waves{position:absolute;bottom:0;left:0;right:0;height:160px}
+  .wave{animation:wave-move 6s ease-in-out infinite alternate;transform-origin:center bottom}
+  .wave2{animation-delay:-2s;animation-duration:8s}
+  .wave3{animation-delay:-4s;animation-duration:10s}
+  @keyframes wave-move{0%{transform:scaleX(1) translateY(0)}100%{transform:scaleX(1.05) translateY(-10px)}}
+  .lanterns{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none}
+  .lantern{position:absolute;width:18px;height:26px;border-radius:50% 50% 40% 40%;background:radial-gradient(circle at 40% 35%,rgba(255,220,80,0.95),rgba(200,80,20,0.8));box-shadow:0 0 18px 6px rgba(255,200,60,0.5);animation:float-up linear infinite;opacity:0}
+  .lantern::after{content:'';display:block;width:2px;height:8px;background:rgba(255,200,80,0.6);margin:0 auto}
+  @keyframes float-up{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:0.9}80%{opacity:0.7}100%{transform:translateY(-90vh) translateX(30px);opacity:0}}
+  .l1{left:10%;animation-duration:12s;animation-delay:0s}.l2{left:25%;animation-duration:15s;animation-delay:3s}.l3{left:50%;animation-duration:11s;animation-delay:6s}.l4{left:70%;animation-duration:14s;animation-delay:1s}.l5{left:85%;animation-duration:13s;animation-delay:4s}.l6{left:40%;animation-duration:16s;animation-delay:8s}
+  .hero-content{position:relative;z-index:2;text-align:center;padding:0 20px}
+  .hero-tag{display:inline-block;font-size:11px;letter-spacing:4px;color:var(--gold-light);border:1px solid rgba(201,168,76,0.5);padding:6px 18px;margin-bottom:28px;animation:fade-in 1s ease both}
+  .hero-title{font-family:'Noto Serif TC',serif;font-size:clamp(52px,10vw,120px);font-weight:900;color:#fff;line-height:1;letter-spacing:-2px;animation:slide-up 1s ease 0.2s both;text-shadow:0 4px 40px rgba(0,0,0,0.4)}
+  .hero-title span{color:var(--gold-light)}
+  .hero-sub{font-family:'Noto Serif TC',serif;font-size:clamp(16px,3vw,24px);color:rgba(255,255,255,0.8);margin-top:16px;letter-spacing:6px;animation:fade-in 1s ease 0.5s both}
+  .hero-dates{display:flex;gap:12px;justify-content:center;margin-top:36px;animation:fade-in 1s ease 0.7s both;flex-wrap:wrap}
+  .hero-date-pill{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);backdrop-filter:blur(6px);padding:10px 22px;border-radius:40px;font-size:14px;color:#fff;letter-spacing:1px}
+  .scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.5);font-size:12px;letter-spacing:3px;animation:bounce 2s ease infinite;z-index:2}
+  .scroll-hint::after{content:'↓';display:block;text-align:center;margin-top:4px;font-size:18px}
+  @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+  @keyframes fade-in{from{opacity:0}to{opacity:1}}
+  @keyframes slide-up{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+  .stats-bar{background:var(--ocean);color:#fff;padding:40px 20px}
+  .stats-inner{max-width:960px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px;justify-content:space-around;align-items:center}
+  .stat-item{text-align:center}
+  .stat-num{font-family:'Noto Serif TC',serif;font-size:42px;font-weight:900;color:var(--gold-light);line-height:1}
+  .stat-label{font-size:13px;color:rgba(255,255,255,0.7);margin-top:4px;letter-spacing:2px}
+  .section{padding:80px 20px}
+  .section-inner{max-width:960px;margin:0 auto}
+  .day-label{display:flex;align-items:center;gap:20px;margin-bottom:36px}
+  .day-badge{flex-shrink:0;width:90px;height:90px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Noto Serif TC',serif;font-weight:900;line-height:1.1}
+  .day-badge .day-num{font-size:32px}.day-badge .day-word{font-size:10px;letter-spacing:2px}
+  .day-title-block{flex:1}
+  .day-title-block h2{font-family:'Noto Serif TC',serif;font-size:clamp(22px,4vw,38px);font-weight:700;line-height:1.2}
+  .day-title-block p{margin-top:6px;color:var(--stone-light);font-size:14px;letter-spacing:1px}
+  .day-divider{flex-shrink:0;width:80px;height:2px}
+  .illus-strip{display:flex;gap:12px;overflow-x:auto;padding:16px 0 8px;scrollbar-width:none;margin-bottom:28px}
+  .illus-strip::-webkit-scrollbar{display:none}
+  .illus-card{flex-shrink:0;width:180px;height:120px;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.12);position:relative;transition:transform 0.3s,box-shadow 0.3s}
+  .illus-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,0.18)}
+  .illus-card svg{width:100%;height:100%}
+  .illus-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.65));color:#fff;font-size:11px;padding:18px 8px 7px;text-align:center}
+  .timeline{position:relative}
+  .timeline::before{content:'';position:absolute;left:40px;top:0;bottom:0;width:2px}
+  .stop{display:flex;gap:24px;padding:0 0 32px 0;position:relative}
+  .stop-left{width:80px;flex-shrink:0;text-align:right;padding-top:4px;position:relative}
+  .stop-dot{position:absolute;right:-12px;top:8px;width:22px;height:22px;border-radius:50%;border:3px solid #fff;z-index:1;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff}
+  .stop-time{font-size:12px;font-weight:500;letter-spacing:1px;color:var(--stone-light)}
+  .stop-card{flex:1;border-radius:12px;padding:16px 20px;transition:transform 0.2s,box-shadow 0.2s}
+  .stop-card:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.1)}
+  .stop-name{font-family:'Noto Serif TC',serif;font-size:17px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .stop-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .meta-pill{display:inline-flex;align-items:center;gap:4px;font-size:12px;padding:3px 10px;border-radius:20px;white-space:nowrap}
+  .stop-address{margin-top:8px;font-size:12px;color:var(--stone-light);line-height:1.5}
+  .stop-note{margin-top:8px;font-size:13px;font-style:italic;line-height:1.5;padding-left:12px;border-left:3px solid}
+  .highlight-tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;font-weight:600;letter-spacing:1px}
+  .options-block{margin-top:10px;display:flex;flex-direction:column;gap:6px}
+  .option-row{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--stone);line-height:1.4}
+  .option-tag{flex-shrink:0;font-size:10px;background:var(--ocean-light);color:var(--ocean);padding:2px 6px;border-radius:4px;font-weight:600;margin-top:1px}
+  .day1-section{background:linear-gradient(180deg,#F5F0E8 0%,#EDE4D0 100%)}
+  .day1-section .day-badge{background:var(--sorghum);color:#fff}
+  .day1-section .day-divider{background:var(--sorghum)}
+  .day1-section .day-title-block h2{color:var(--sorghum)}
+  .day1-section .timeline::before{background:rgba(139,37,0,0.2)}
+  .day1-section .stop-dot{background:var(--sorghum)}
+  .day1-section .stop-card{background:#fff;box-shadow:0 2px 12px rgba(139,37,0,0.08)}
+  .day1-section .stop-note{border-color:var(--sorghum-light);color:var(--sorghum)}
+  .day1-section .highlight-tag{background:var(--sorghum);color:#fff}
+  .day1-section .meta-pill{background:rgba(139,37,0,0.08);color:var(--sorghum)}
+  .day2-section{background:linear-gradient(180deg,#EAF2FB 0%,#D6EAF8 100%)}
+  .day2-section .day-badge{background:var(--ocean);color:#fff}
+  .day2-section .day-divider{background:var(--ocean)}
+  .day2-section .day-title-block h2{color:var(--ocean)}
+  .day2-section .timeline::before{background:rgba(27,79,114,0.2)}
+  .day2-section .stop-dot{background:var(--ocean)}
+  .day2-section .stop-card{background:#fff;box-shadow:0 2px 12px rgba(27,79,114,0.08)}
+  .day2-section .stop-note{border-color:var(--ocean-mid);color:var(--ocean)}
+  .day2-section .highlight-tag{background:var(--ocean);color:#fff}
+  .day2-section .meta-pill{background:rgba(27,79,114,0.08);color:var(--ocean)}
+  .day3-section{background:linear-gradient(180deg,#FBF6EC 0%,#F0E6CC 100%)}
+  .day3-section .day-badge{background:var(--gold);color:#fff}
+  .day3-section .day-divider{background:var(--gold)}
+  .day3-section .day-title-block h2{color:var(--stone)}
+  .day3-section .timeline::before{background:rgba(201,168,76,0.3)}
+  .day3-section .stop-dot{background:var(--gold)}
+  .day3-section .stop-card{background:#fff;box-shadow:0 2px 12px rgba(201,168,76,0.1)}
+  .day3-section .stop-note{border-color:var(--gold);color:var(--stone)}
+  .day3-section .highlight-tag{background:var(--gold);color:#fff}
+  .day3-section .meta-pill{background:rgba(201,168,76,0.12);color:var(--stone)}
+  .pdf-btn-wrap{position:fixed;bottom:30px;right:30px;z-index:999}
+  .pdf-btn{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--sorghum),var(--sorghum-light));color:#fff;border:none;padding:16px 28px;border-radius:50px;font-family:'Noto Sans TC',sans-serif;font-size:15px;font-weight:500;cursor:pointer;box-shadow:0 6px 30px rgba(139,37,0,0.35);transition:transform 0.2s,box-shadow 0.2s;letter-spacing:1px}
+  .pdf-btn:hover{transform:translateY(-3px);box-shadow:0 10px 40px rgba(139,37,0,0.45)}
+  .footer{background:var(--dark);color:rgba(255,255,255,0.5);text-align:center;padding:40px 20px;font-size:13px;letter-spacing:1px}
+  @media(max-width:600px){.timeline::before{left:28px}.stop-left{width:56px}.stop-dot{right:-8px;width:16px;height:16px}.day-badge{width:64px;height:64px}.day-badge .day-num{font-size:22px}.pdf-btn-wrap{bottom:16px;right:16px}.pdf-btn{padding:12px 20px;font-size:14px}}
+  @media print{.pdf-btn-wrap{display:none}.hero{height:40vh;min-height:300px}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="lanterns">
+    <div class="lantern l1"></div><div class="lantern l2"></div><div class="lantern l3"></div>
+    <div class="lantern l4"></div><div class="lantern l5"></div><div class="lantern l6"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag">🌊 離島旅遊 &middot; KINMEN ISLAND</div>
+    <h1 class="hero-title"><span>金</span>門<br>三日遊</h1>
+    <p class="hero-sub">烽火歷史 &middot; 高粱酒香 &middot; 海天一色</p>
+    <div class="hero-dates">
+      <div class="hero-date-pill">📅 6/12 星期五</div>
+      <div class="hero-date-pill">6/13 星期六</div>
+      <div class="hero-date-pill">6/14 星期日</div>
+    </div>
+  </div>
+  <svg class="waves" viewBox="0 0 1440 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave" d="M0,80 C200,120 400,40 600,80 C800,120 1000,40 1200,80 C1320,104 1400,88 1440,80 L1440,160 L0,160 Z" fill="rgba(245,240,232,0.3)"/>
+    <path class="wave wave2" d="M0,100 C180,60 360,140 540,100 C720,60 900,140 1080,100 C1260,60 1380,110 1440,100 L1440,160 L0,160 Z" fill="rgba(245,240,232,0.5)"/>
+    <path class="wave wave3" d="M0,120 C240,90 480,150 720,120 C960,90 1200,150 1440,120 L1440,160 L0,160 Z" fill="#F5F0E8"/>
+  </svg>
+  <div class="scroll-hint">向下滑動</div>
+</header>
+
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">天數</div></div>
+    <div class="stat-item"><div class="stat-num">23</div><div class="stat-label">景點站點</div></div>
+    <div class="stat-item"><div class="stat-num">106+</div><div class="stat-label">公里路程</div></div>
+    <div class="stat-item"><div class="stat-num">1</div><div class="stat-label">島嶼</div></div>
+    <div class="stat-item"><div class="stat-num">∞</div><div class="stat-label">回憶</div></div>
+  </div>
+</div>
+
+<!-- DAY 1 -->
+<section class="section day1-section">
+  <div class="section-inner">
+    <div class="day-label">
+      <div class="day-badge"><div class="day-num">Day</div><div class="day-word">01</div></div>
+      <div class="day-divider"></div>
+      <div class="day-title-block">
+        <h2>🏯 抵達金門 · 古厝探訪</h2>
+        <p>6月12日（星期五）· 取車 → 石蚵 → 建功嶼 → 夜景</p>
+      </div>
+    </div>
+    <div class="illus-strip">
+      <!-- Airport SVG -->
+      <div class="illus-card">
+        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="180" height="120" fill="#87CEEB"/>
+          <rect y="90" width="180" height="30" fill="#8B7355"/>
+          <rect x="55" y="40" width="70" height="50" fill="#F5F5DC" rx="4"/>
+          <rect x="68" y="52" width="18" height="22" fill="#6CA0DC" rx="2"/>
+          <rect x="94" y="52" width="18" height="22" fill="#6CA0DC" rx="2"/>
+          <rect x="73" y="74" width="34" height="16" fill="#D2691E"/>
+          <polygon points="48,40 132,40 142,26 38,26" fill="#C0392B"/>
+          <rect x="32" y="26" width="116" height="5" fill="#922B21"/>
+          <path d="M15,70 L58,63 L82,58 L58,56 Z" fill="#BDC3C7"/>
+          <circle cx="158" cy="20" r="13" fill="#FFF176" opacity="0.9"/>
+          <path d="M30,18 Q35,14 40,18 Q35,22 30,18Z" fill="white" opacity="0.7"/>
+          <path d="M140,50 Q148,46 155,50 Q148,54 140,50Z" fill="white" opacity="0.6"/>
+        </svg>
+        <div class="illus-label">金門機場</div>
+      </div>
+      <!-- Oyster SVG -->
+      <div class="illus-card">
+        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="180" height="120" fill="#0E4D6E"/>
+          <path d="M0,85 Q45,70 90,80 Q135,90 180,78 L180,120 L0,120Z" fill="#0A3D54"/>
+          <ellipse cx="52" cy="68" rx="30" ry="19" fill="#5D6D7E" transform="rotate(-12,52,68)"/>
+          <ellipse cx="52" cy="68" rx="23" ry="14" fill="#808B96" transform="rotate(-12,52,68)"/>
+          <ellipse cx="54" cy="66" rx="15" ry="9" fill="#F0E6D3" transform="rotate(-12,54,66)"/>
+          <ellipse cx="112" cy="65" rx="32" ry="20" fill="#5D6D7E" transform="rotate(8,112,65)"/>
+          <ellipse cx="112" cy="65" rx="25" ry="15" fill="#808B96" transform="rotate(8,112,65)"/>
+          <ellipse cx="114" cy="63" rx="16" ry="10" fill="#F0E6D3" transform="rotate(8,114,63)"/>
+          <ellipse cx="78" cy="90" rx="26" ry="14" fill="#5D6D7E" transform="rotate(-4,78,90)"/>
+          <ellipse cx="78" cy="90" rx="20" ry="10" fill="#808B96" transform="rotate(-4,78,90)"/>
+          <ellipse cx="80" cy="88" rx="12" ry="7" fill="#F0E6D3" transform="rotate(-4,80,88)"/>
+          <text x="90" y="28" text-anchor="middle" fill="#AED6F1" font-size="13" font-family="serif">石蚵之家</text>
+          <path d="M20,82 Q45,76 70,82" stroke="#7FB3D3" stroke-width="1.5" fill="none" opacity="0.5"/>
+          <path d="M110,75 Q135,69 160,75" stroke="#7FB3D3" stroke-width="1.5" fill="none" opacity="0.5"/>
+        </svg>
+        <div class="illus-label">石蚵之家</div>
+      </div>
+      <!-- Islet SVG -->
+      <div class="illus-card">
+        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="180" height="120" fill="#1A6EA8"/>
+          <path d="M0,90 Q45,78 90,90 Q135,102 180,90 L180,120 L0,120Z" fill="#0E4D6E"/>
+          <ellipse cx="90" cy="88" rx="52" ry="20" fill="#8B7355"/>
+          <ellipse cx="90" cy="80" rx="42" ry="14" fill="#A0895A"/>
+          <rect x="84" y="30" width="12" height="50" fill="#7F8C8D"/>
+          <polygon points="84,30 96,30 90,12" fill="#C0392B"/>
+          <rect x="87" y="35" width="6" height="5" fill="#FFF9C4"/>
+          <circle cx="148" cy="22" r="14" fill="#FFF9C4" opacity="0.9"/>
+          <path d="M15,55 Q28,50 40,55 Q28,60 15,55Z" fill="white" opacity="0.6"/>
+          <path d="M130,62 Q145,56 158,62 Q145,67 130,62Z" fill="white" opacity="0.6"/>
+          <text x="90" y="108" text-anchor="middle" fill="#AED6F1" font-size="11" font-family="serif">建功嶼</text>
+        </svg>
+        <div class="illus-label">建功嶼</div>
+      </div>
+      <!-- Old mansion SVG -->
+      <div class="illus-card">
+        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="180" height="120" fill="#F5CBA7"/>
+          <rect x="0" y="100" width="180" height="20" fill="#8B7355"/>
+          <rect x="22" y="52" width="136" height="58" fill="#FDFAF4"/>
+          <rect x="22" y="46" width="136" height="10" fill="#E59866"/>
+          <path d="M18,50 Q90,14 162,50" fill="#8B0000"/>
+          <path d="M26,48 Q90,20 154,48" fill="#C0392B"/>
+          <rect x="35" y="62" width="22" height="26" fill="#AED6F1" rx="2"/>
+          <rect x="65" y="62" width="22" height="26" fill="#AED6F1" rx="2"/>
+          <rect x="95" y="62" width="22" height="26" fill="#AED6F1" rx="2"/>
+          <rect x="125" y="62" width="22" height="26" fill="#AED6F1" rx="2"/>
+          <line x1="46" y1="62" x2="46" y2="88" stroke="#5D6D7E" stroke-width="1.5"/>
+          <line x1="35" y1="75" x2="57" y2="75" stroke="#5D6D7E" stroke-width="1.5"/>
+          <line x1="76" y1="62" x2="76" y2="88" stroke="#5D6D7E" stroke-width="1.5"/>
+          <line x1="65" y1="75" x2="87" y2="75" stroke="#5D6D7E" stroke-width="1.5"/>
+          <line x1="106" y1="62" x2="106" y2="88" stroke="#5D6D7E" stroke-width="1.5"/>
+          <line x1="95" y1="75" x2="117" y2="75" stroke="#5D6D7E" stroke-width="1.5"/>
+          <rect x="74" y="88" width="32" height="22" fill="#6D4C1F" rx="2"/>
+          <text x="90" y="112" text-anchor="middle" fill="#F5CBA7" font-size="9" font-family="serif">得月樓</text>
+        </svg>
+        <div class="illus-label">得月樓</div>
+      </div>
+      <!-- Night view SVG -->
+      <div class="illus-card">
+        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="180" height="120" fill="#0D1B2A"/>
+          <circle cx="152" cy="18" r="11" fill="#FFF9C4" opacity="0.9"/>
+          <circle cx="18" cy="16" r="3" fill="white" opacity="0.8"/>
+          <circle cx="48" cy="9" r="2" fill="white" opacity="0.6"/>
+          <circle cx="78" cy="14" r="2.5" fill="white" opacity="0.7"/>
+          <circle cx="108" cy="7" r="2" fill="white" opacity="0.5"/>
+          <circle cx="135" cy="12" r="1.5" fill="white" opacity="0.6"/>
+          <rect x="28" y="55" width="26" height="52" fill="#1A2A3A"/>
+          <rect x="62" y="44" width="22" height="63" fill="#1A2A3A"/>
+          <rect x="92" y="60" width="30" height="47" fill="#1A2A3A"/>
+          <rect x="130" y="50" width="24" height="57" fill="#1A2A3A"/>
+          <rect x="31" y="58" width="5" height="4" fill="#F4D03F" opacity="0.9"/>
+          <rect x="40" y="58" width="5" height="4" fill="#F4D03F" opacity="0.9"/>
+          <rect x="31" y="66" width="5" height="4" fill="#F4D03F" opacity="0.7"/>
+          <rect x="40" y="66" width="5" height="4" fill="#F4D03F" opacity="0.7"/>
+          <rect x="65" y="48" width="5" height="4" fill="#F4D03F" opacity="0.9"/>
+          <rect x="74" y="56" width="5" height="4" fill="#F4D03F" opacity="0.8"/>
+          <rect x="65" y="64" width="5" height="4" fill="#F4D03F" opacity="0.6"/>
+          <rect x="95" y="64" width="6" height="4" fill="#F4D03F" opacity="0.9"/>
+          <rect x="105" y="72" width="6" height="4" fill="#F4D03F" opacity="0.7"/>
+          <rect x="133" y="54" width="6" height="4" fill="#F4D03F" opacity="0.9"/>
+          <rect x="143" y="62" width="6" height="4" fill="#F4D03F" opacity="0.7"/>
+          <path d="M0,100 Q45,92 90,100 Q135,108 180,100 L180,120 L0,120Z" fill="#0A4A6E" opacity="0.8"/>
+          <path d="M0,108 Q45,102 90,108 Q135,114 180,108 L180,120 L0,120Z" fill="#0D6EAF" opacity="0.5"/>
+        </svg>
+        <div class="illus-label">金門夜景</div>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">12:05</div><div class="stop-dot">✈</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>✈️</span>金門機場</div>
+          <div class="stop-meta"><span class="meta-pill">⏱ 停留 60 分</span><span class="meta-pill">🚗 取車</span></div>
+          <div class="stop-note">取貨 + 車（預計租車時間 12:30）</div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">13:05</div><div class="stop-dot">🦪</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>🦪</span>石蚵之家</div>
+          <div class="stop-meta"><span class="meta-pill">🚗 8.3 km · 12 分</span><span class="meta-pill">⏱ 停留 60 分</span></div>
+          <div class="stop-address">📍 892 金門縣金寧鄉古寧村林厝50號之6號</div>
+          <div class="stop-note">或去馬家麵線、石蚵之家、聯泰餐廳、金門牛家莊</div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">14:27</div><div class="stop-dot">🏝</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>🏝️</span>建功嶼</div>
+          <div class="stop-meta"><span class="meta-pill">🚗 7.4 km · 13 分</span><span class="meta-pill">⏱ 停留 30 分</span></div>
+          <div class="stop-address">📍 導航延平郡王祠旁邊</div>
+          <div class="stop-note">🕑 1455–1555 可過</div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">15:10</div><div class="stop-dot">🛖</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>🛖</span>微醺民宿</div>
+          <div class="stop-meta"><span class="meta-pill">🚗 3.9 km · 9 分</span><span class="meta-pill">⏱ 停留 60 分</span></div>
+          <div class="stop-address">📍 893 金門縣金城鎮（TipsyHotel）</div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">16:19</div><div class="stop-dot">🏯</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>🏯</span>得月樓</div>
+          <div class="stop-meta"><span class="meta-pill">🚗 1.5 km · 5 分</span><span class="meta-pill">⏱ 停留 60 分</span></div>
+          <div class="stop-address">📍 893 金門縣金城鎮金水里前水頭45號</div>
+          <div class="stop-note">⚠️ 停車未查</div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">17:24</div><div class="stop-dot">🍜</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>🌿</span>紫微庭園美食 <span class="highlight-tag">待訂位</span></div>
+          <div class="stop-meta"><span class="meta-pill">🚗 8.3 km · 16 分</span><span class="meta-pill">⏱ 停留 90 分</span></div>
+          <div class="stop-address">📍 892 金門縣金寧鄉后盤山35號</div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">19:10</div><div class="stop-dot">🌃</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>🌃</span>夜景選項（三擇一）</div>
+          <div class="options-block">
+            <div class="option-row"><span class="option-tag">選項1</span><span>🏙️ <b>莒光樓</b>（人文夜景）— 893 金門縣金城鎮東門里賢城路1號</span></div>
+            <div class="option-row"><span class="option-tag">選項2</span><span>🌉 <b>金門大橋</b>（廈門夜景）— 892 金門縣金寧鄉慈湖路二段</span></div>
+            <div class="option-row"><span class="option-tag">選項3</span><span>☕ <b>同安渡船頭 / 慈湖海堤</b>（咖啡廳看海走沙灘，順便賭藍眼淚）— 892 金門縣金寧鄉</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAY 2 -->
+<section class="section day2-section">
+  <div class="section-inner">
+    <div class="day-label">
+      <div class="day-badge"><div class="day-num">Day</div><div class="day-word">02</div></div>
+      <div class="day-divider"></div>
+      <div class="day-title-block">
+        <h2>⛵ 翟山坑道 · 沙灘漫遊</h2>
+        <p>6月13日（星期六）· 坑道 → 購物 → 洋樓 → 清金門</p>
+      </div>
+    </div>
+    <div class="illus-strip">
+      <!-- Tunnel -->
+      <div class="illus-card">
+        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="180" height="120" fill="#1C2833"/>
+          <path d="M18,112 L18,48 Q90,8 162,48 L162,112 Z" fill="#2C3E50"/>
+          <path d="M34,112 L34,55 Q90,20 146,55 L146,112 Z" fill="#1A252F"/>
+          <path d="M52,112 L52,63 Q90,33 128,63 L128,112 Z" fill="#0D1B2A"/>
+          <path d="M68,112 L68,74 Q90,52 112,74 L112,112 Z" fill="#7FB3D3" opacity="0.35"/>
+          <path d="M0,96 Q45,86 90,96 Q135,106 180,96 L180,120 L0,120Z" fill="#1A6EA8" opacity="0.6"/>
+          <path d="M0,106 Q45,100 90,106 Q135,112 180,106 L180,120 L0,120Z" fill="#2196F3" opacity="0.45"/>
+          <circle cx="90" cy="56" r="3" fill="#FFF176" opacity="0.8"/>
+          <circle cx="72" cy="67" r="2" fill="#FFF176" opacity="0.5"/>
+          <circle cx="108" cy="67" r="2" fill="#FFF176" opacity="0.5"/>
+          <text x="90" y="20" text-anchor="middle" fill="#AED6F1" font-size="12" font-family="serif">翟山坑道</text>
+        </svg>
+        <div class="illus-label">翟山坑道</div>
+      </div>
+      <!-- Shopping -->
+      <div class="illus-card">
+        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="180" height="120" fill="#FEF9F0"/>
+          <rect x="12" y="38" width="156" height="72" fill="#FDFEFE" rx="6"/>
+          <rect x="12" y="38" width="156" height="18" fill="#C0392B" rx="6"/>
+          <rect x="12" y="50" width="156" height="6" fill="#922B21"/>
+          <rect x="26" y="64" width="36" height="30" fill="#85C1E9" rx="3"/>
+          <rect x="72" y="64" width="36" height="30" fill="#82E0AA" rx="3"/>
+          <rect x="118" y="64" width="36" height="30" fill="#F8C471" rx="3"/>
+          <rect x="68" y="90" width="44" height="20" fill="#D4AC0D" rx="3"/>
+          <rect x="74" y="95" width="32" height="14" fill="#F4D03F" rx="2"/>
+          <path d="M58,33 Q90,18 122,33" stroke="#7D6608" stroke-width="3" fill="none"/>
+          <circle cx="58" cy="33" r="4" fill="#7D6608"/>
+          <circle cx="122" cy="33" r="4" fill="#7D6608"/>
+          <text x="90" y="50" text-anchor="middle" fill="white" font-size="9" font-weight="bold">合泉購物中心</text>
+        </svg>
+        <div class="illus-label">合泉購物中心</div>
+      </div>
+      <!-- Western mansion -->
+      <div class="illus-card">
+        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="180" height="120" fill="#D5E8D4"/>
+          <rect x="0" y="98" width="180" height="22" fill="#5D8A4C" opacity="0.6"/>
+          <rect x="22" y="34" width="136" height="68" fill="#F5CBA7"/>
+          <rect x="22" y="28" width="136" height="10" fill="#E59866"/>
+          <path d="M18,30 L90,6 L162,30 Z" fill="#D4AC0D"/>
+          <rect x="36" y="46" width="22" height="28" fill="#7FB3D3" rx="2"/>
+          <rect x="68" y="46" width="22" height="28" fill="#7FB3D3" rx="2"/>
+          <rect x="100" y="46" width="22" height="28" fill="#7FB3D3" rx="2"/>
+          <rect x="132" y="46" width="22" height="28" fill="#7FB3D3" rx="2"/>
+          <rect x="74" y="76" width="32" height="26" fill="#A04000" rx="2"/>
+          <rect x="33" y="18" width="4" height="12" fill="#F4D03F"/>
+          <rect x="143" y="18" width="4" height="12" fill="#F4D03F"/>
+          <text x="90" y="112" text-anchor="middle" fill="#145A32" font-size="10" font-family="serif">陳景蘭洋樓</text>
+        </svg>
+        <div class="illus-label">陳景蘭洋樓</div>
+      </div>
+      <!-- Sunset beach -->
+      <div class="illus-card">
+        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF6B35"/><stop offset="50%" stop-color="#FFB347"/><stop offset="100%" stop-color="#FFD700"/></linearGradient></defs>
+          <rect width="180" height="120" fill="url(#sky2)"/>
+          <circle cx="90" cy="68" r="26" fill="#FFF176" opacity="0.95"/>
+          <path d="M0,76 Q45,65 90,76 Q135,87 180,76 L180,120 L0,120Z" fill="#1A6EA8"/>
+          <path d="M0,86 Q45,79 90,86 Q135,93 180,86 L180,120 L0,120Z" fill="#2196F3" opacity="0.7"/>
+          <path d="M0,96 Q45,91 90,96 Q135,101 180,96 L180,120 L0,120Z" fill="#42A5F5" opacity="0.5"/>
+          <path d="M58,68 L90,68 L122,68" stroke="#FFF9C4" stroke-width="2.5" opacity="0.7"/>
+          <ellipse cx="90" cy="114" rx="68" ry="7" fill="#C4A265"/>
+        </svg>
+        <div class="illus-label">成功沙灘夕陽</div>
+      </div>
+      <!-- Military -->
+      <div class="illus-card">
+        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="180" height="120" fill="#212F3D"/>
+          <rect x="0" y="90" width="180" height="30" fill="#1A252F"/>
+          <rect x="18" y="46" width="144" height="52" fill="#2E4053"/>
+          <rect x="18" y="40" width="22" height="10" fill="#2E4053"/>
+          <rect x="54" y="40" width="22" height="10" fill="#2E4053"/>
+          <rect x="90" y="40" width="22" height="10" fill="#2E4053"/>
+          <rect x="126" y="40" width="22" height="10" fill="#2E4053"/>
+          <rect x="32" y="62" width="26" height="25" fill="#1A252F"/>
+          <rect x="70" y="62" width="26" height="25" fill="#1A252F"/>
+          <rect x="108" y="62" width="26" height="25" fill="#1A252F"/>
+          <rect x="74" y="80" width="32" height="8" fill="#922B21"/>
+          <circle cx="152" cy="22" r="10" fill="#F4D03F" opacity="0.7"/>
+          <circle cx="28" cy="28" r="2.5" fill="white" opacity="0.5"/>
+          <circle cx="58" cy="20" r="2" fill="white" opacity="0.4"/>
+          <text x="90" y="108" text-anchor="middle" fill="#AED6F1" font-size="8" font-family="serif">清金門鎮總兵署</text>
+        </svg>
+        <div class="illus-label">清金門鎮總兵署</div>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">10:00</div><div class="stop-dot">⛵</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>⛵</span>翟山坑道</div>
+          <div class="stop-meta"><span class="meta-pill">⏱ 停留 60 分</span></div>
+          <div class="stop-address">📍 893 金門縣金城鎮90號</div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">11:06</div><div class="stop-dot">🛍</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>🛍️</span>合泉購物中心</div>
+          <div class="stop-meta"><span class="meta-pill">🚗 12.0 km · 20 分</span><span class="meta-pill">⏱ 停留 60 分</span><span class="meta-pill">🍜 金拌麵</span></div>
+          <div class="stop-address">📍 891 金門縣金湖鎮瓊林里63號</div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">12:56</div><div class="stop-dot">🏛</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>🏛️</span>陳景蘭洋樓</div>
+          <div class="stop-meta"><span class="meta-pill">🚗 1.9 km · 6 分</span><span class="meta-pill">⏱ 停留 40 分</span></div>
+          <div class="stop-address">📍 891 金門縣金湖鎮</div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">13:42</div><div class="stop-dot">🚌</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>🚌</span>山外車站</div>
+          <div class="stop-meta"><span class="meta-pill">🚗 3.4 km · 6 分</span><span class="meta-pill">⏱ 停留 170 分</span></div>
+          <div class="stop-address">📍 891 金門縣金湖鎮山外里黃海路90之1號</div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">16:38</div><div class="stop-dot">🍶</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>🍶</span>良金牧場工廠總店 <span class="highlight-tag">待訂位</span></div>
+          <div class="stop-meta"><span class="meta-pill">🚗 1.3 km · 2 分</span><span class="meta-pill">⏱ 停留 90 分</span></div>
+          <div class="stop-address">📍 891 金門縣金湖鎮瓊林里魚村160號</div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">18:10</div><div class="stop-dot">🌅</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>🌅</span>成功沙灘</div>
+          <div class="stop-meta"><span class="meta-pill">🚗 2.2 km · 5 分</span><span class="meta-pill">🌇 看夕陽</span></div>
+          <div class="stop-address">📍 891 金門縣金湖鎮</div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">18:55</div><div class="stop-dot">🎖</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>🎖️</span>清金門鎮總兵署（浯江新莊）</div>
+          <div class="stop-meta"><span class="meta-pill">🚗 8.5 km · 14 分</span><span class="meta-pill">⏱ 停留 120 分</span></div>
+          <div class="stop-address">📍 893 金門縣金城鎮北門里浯江街53號</div>
+          <div class="stop-note">19:30 有導覽，導遊會一直說，累了可以直接走掉 / 看要不要順便買伴手禮</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAY 3 -->
+<section class="section day3-section">
+  <div class="section-inner">
+    <div class="day-label">
+      <div class="day-badge"><div class="day-num">Day</div><div class="day-word">03</div></div>
+      <div class="day-divider"></div>
+      <div class="day-title-block">
+        <h2>🦁 烈嶼 · 堡壘巡禮 · 返航</h2>
+        <p>6月14日（星期日）· 烈嶼走透透 → 金門機場</p>
+      </div>
+    </div>
+    <div class="illus-strip">
+      <!-- Fort -->
+      <div class="illus-card">
+        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="180" height="120" fill="#7DCEA0"/>
+          <rect x="0" y="92" width="180" height="28" fill="#5D8A4C"/>
+          <rect x="28" y="28" width="124" height="68" fill="#ABEBC6" rx="3"/>
+          <rect x="28" y="22" width="20" height="10" fill="#ABEBC6"/>
+          <rect x="58" y="22" width="20" height="10" fill="#ABEBC6"/>
+          <rect x="88" y="22" width="20" height="10" fill="#ABEBC6"/>
+          <rect x="118" y="22" width="20" height="10" fill="#ABEBC6"/>
+          <rect x="44" y="52" width="24" height="44" fill="#1E8449" rx="2"/>
+          <rect x="78" y="52" width="24" height="44" fill="#1E8449" rx="2"/>
+          <rect x="112" y="52" width="24" height="44" fill="#1E8449" rx="2"/>
+          <rect x="87" y="8" width="6" height="18" fill="#7F8C8D"/>
+          <polygon points="87,8 93,8 90,0" fill="#C0392B"/>
+          <path d="M0,90 Q45,82 90,90 Q135,98 180,90" stroke="#1A6EA8" stroke-width="2" fill="none" opacity="0.4"/>
+          <text x="90" y="46" text-anchor="middle" fill="#145A32" font-size="10" font-weight="bold">勇士堡</text>
+        </svg>
+        <div class="illus-label">勇士堡</div>
+      </div>
+      <!-- Beach -->
+      <div class="illus-card">
+        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="sky3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#85C1E9"/><stop offset="100%" stop-color="#AED6F1"/></linearGradient></defs>
+          <rect width="180" height="120" fill="url(#sky3)"/>
+          <circle cx="148" cy="22" r="16" fill="white" opacity="0.8"/>
+          <circle cx="168" cy="18" r="12" fill="white" opacity="0.7"/>
+          <circle cx="128" cy="26" r="14" fill="white" opacity="0.6"/>
+          <path d="M0,72 Q45,60 90,72 Q135,84 180,72 L180,120 L0,120Z" fill="#1A6EA8"/>
+          <path d="M0,82 Q45,74 90,82 Q135,90 180,82 L180,120 L0,120Z" fill="#2196F3" opacity="0.65"/>
+          <ellipse cx="90" cy="114" rx="80" ry="9" fill="#D4B483"/>
+          <path d="M8,68 Q28,62 48,68" stroke="white" stroke-width="2" fill="none" opacity="0.55"/>
+          <path d="M112,75 Q135,68 158,75" stroke="white" stroke-width="2" fill="none" opacity="0.55"/>
+          <text x="90" y="52" text-anchor="middle" fill="#1A4F6E" font-size="11" font-family="serif">雙口海灘</text>
+        </svg>
+        <div class="illus-label">雙口海灘</div>
+      </div>
+      <!-- Tunnel 9 -->
+      <div class="illus-card">
+        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="180" height="120" fill="#5D6D7E"/>
+          <rect x="0" y="96" width="180" height="24" fill="#3D4F5D"/>
+          <path d="M8,112 L8,38 Q90,-8 172,38 L172,112 Z" fill="#4A5568"/>
+          <path d="M28,112 L28,50 Q90,10 152,50 L152,112 Z" fill="#2D3748"/>
+          <path d="M50,112 L50,63 Q90,30 130,63 L130,112 Z" fill="#1A252F"/>
+          <path d="M66,112 L66,74 Q90,50 114,74 L114,112 Z" fill="#87CEEB" opacity="0.28"/>
+          <circle cx="90" cy="63" r="4" fill="#FFF9C4" opacity="0.6"/>
+          <path d="M0,96 Q45,89 90,96 Q135,103 180,96 L180,120 L0,120Z" fill="#1A6EA8" opacity="0.45"/>
+          <text x="90" y="22" text-anchor="middle" fill="#AED6F1" font-size="11" font-family="serif">九宮坑道</text>
+        </svg>
+        <div class="illus-label">九宮坑道</div>
+      </div>
+      <!-- Beef -->
+      <div class="illus-card">
+        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="180" height="120" fill="#FEF5E7"/>
+          <ellipse cx="90" cy="82" rx="66" ry="28" fill="#E8DAAD"/>
+          <ellipse cx="90" cy="76" rx="55" ry="21" fill="#F5CBA7"/>
+          <ellipse cx="74" cy="60" rx="30" ry="18" fill="#C0392B"/>
+          <ellipse cx="110" cy="64" rx="24" ry="15" fill="#C0392B"/>
+          <ellipse cx="90" cy="70" rx="20" ry="11" fill="#A93226"/>
+          <ellipse cx="74" cy="60" rx="22" ry="13" fill="#E74C3C"/>
+          <ellipse cx="110" cy="64" rx="17" ry="10" fill="#E74C3C"/>
+          <path d="M58,58 Q90,44 122,58" stroke="#922B21" stroke-width="2" fill="none"/>
+          <ellipse cx="90" cy="30" rx="22" ry="14" fill="#82E0AA"/>
+          <text x="90" y="34" text-anchor="middle" fill="#145A32" font-size="9" font-weight="bold">滷牛肉</text>
+          <text x="90" y="110" text-anchor="middle" fill="#7D6608" font-size="10" font-family="serif">金門牛家莊</text>
+        </svg>
+        <div class="illus-label">金門牛家莊</div>
+      </div>
+      <!-- Departure plane -->
+      <div class="illus-card">
+        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="sky4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1A6EA8"/><stop offset="60%" stop-color="#5DADE2"/><stop offset="100%" stop-color="#AED6F1"/></linearGradient></defs>
+          <rect width="180" height="120" fill="url(#sky4)"/>
+          <path d="M18,70 L62,57 L94,50 L134,53 L154,58 L94,62 Z" fill="#BDC3C7"/>
+          <path d="M94,50 L134,53 L138,46 L98,43 Z" fill="#95A5A6"/>
+          <path d="M62,57 L94,50 L94,62 L68,67 Z" fill="#95A5A6"/>
+          <circle cx="72" cy="64" r="7" fill="#7F8C8D"/>
+          <circle cx="116" cy="62" r="7" fill="#7F8C8D"/>
+          <rect x="0" y="97" width="180" height="23" fill="#3D4F5D"/>
+          <path d="M40,70 L62,57" stroke="white" stroke-width="1" fill="none" opacity="0.3"/>
+          <circle cx="150" cy="16" r="12" fill="#FFF9C4" opacity="0.9"/>
+          <circle cx="22" cy="18" r="3" fill="white" opacity="0.7"/>
+          <circle cx="50" cy="10" r="2" fill="white" opacity="0.6"/>
+          <text x="90" y="112" text-anchor="middle" fill="#AED6F1" font-size="10" font-family="serif">返回台灣</text>
+        </svg>
+        <div class="illus-label">金門返航</div>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">08:00</div><div class="stop-dot">🚢</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>🏰</span>勇士堡</div>
+          <div class="stop-meta"><span class="meta-pill">🚗 13.4 km · 21 分</span><span class="meta-pill">⏱ 停留 90 分</span></div>
+          <div class="stop-address">📍 894 金門縣烈嶼鄉（停車後可從地下通道走到鐵漢堡）</div>
+          <div class="stop-note">搭 8:25 台灣好行繞烈嶼，回來買伴手禮</div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">09:51</div><div class="stop-dot">🌊</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>🌊</span>雙口海灘</div>
+          <div class="stop-meta"><span class="meta-pill">🚗 3.3 km · 6 分</span><span class="meta-pill">⏱ 停留 20 分</span></div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">10:17</div><div class="stop-dot">🏖</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>🏖️</span>沙溪堡 <span class="highlight-tag" style="background:#FFF3CD;color:#856404;border:1px solid #FFECB5;">待確認</span></div>
+          <div class="stop-meta"><span class="meta-pill">🚗 4.7 km · 11 分</span><span class="meta-pill">⏱ 停留 30 分</span></div>
+          <div class="stop-address">📍 894 金門縣濱海大道</div>
+          <div class="stop-note">街景看起來好像要走一段，隨機應變</div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">10:58</div><div class="stop-dot">⛩</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>⛩️</span>九宮坑道 <span class="highlight-tag" style="background:#FFF3CD;color:#856404;border:1px solid #FFECB5;">待確認</span></div>
+          <div class="stop-meta"><span class="meta-pill">🚗 7.1 km · 16 分</span><span class="meta-pill">⏱ 停留 60 分</span></div>
+          <div class="stop-note">沿海走</div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">12:14</div><div class="stop-dot">🧱</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>🧱</span>將軍堡 <span class="highlight-tag" style="background:#FFF3CD;color:#856404;border:1px solid #FFECB5;">待確認</span></div>
+          <div class="stop-meta"><span class="meta-pill">🚗 2.2 km · 5 分</span><span class="meta-pill">⏱ 停留 10 分</span></div>
+          <div class="stop-note">和沙溪堡二選一，回金門有點線</div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">12:29</div><div class="stop-dot">🥩</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>🐄</span>金門牛家莊（滷牛肉料理）<span class="highlight-tag">待訂位</span></div>
+          <div class="stop-meta"><span class="meta-pill">🚗 12.3 km · 19 分</span><span class="meta-pill">⏱ 停留 90 分</span></div>
+          <div class="stop-address">📍 893 金門縣金城鎮南門里民族路318巷5號</div>
+          <div class="stop-note">待訂位 / 有時間可以再去金城老街或馬家麵線</div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">14:18</div><div class="stop-dot">🐟</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>🐟</span>老屋ㄉ蚵嗲</div>
+          <div class="stop-meta"><span class="meta-pill">🚗 8.6 km · 14 分</span><span class="meta-pill">⏱ 停留 20 分</span></div>
+          <div class="stop-address">📍 891 金門縣金湖鎮正義里成功村64號</div>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-left"><div class="stop-time">14:52</div><div class="stop-dot">✈</div></div>
+        <div class="stop-card">
+          <div class="stop-name"><span>✈️</span>金門機場（返航）</div>
+          <div class="stop-meta"><span class="meta-pill">🚗 3.9 km · 6 分</span><span class="meta-pill">🏠 返回台灣</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div style="font-size:28px;margin-bottom:12px">🌊</div>
+  <div>金門三日遊 · 2025年6月12–14日</div>
+  <div style="margin-top:8px;color:rgba(255,255,255,0.3);font-size:11px">行程如有異動，以現場為準 · 請隨時關注天氣與潮汐資訊</div>
+</footer>
+
+<div class="pdf-btn-wrap" id="pdf-btn-wrap">
+  <button class="pdf-btn" onclick="exportPDF()">
+    <span>📄</span> 匯出 PDF
+  </button>
+</div>
+
+<script>
+function exportPDF(){
+  var btn=document.getElementById('pdf-btn-wrap');
+  btn.style.display='none';
+  html2pdf().set({
+    margin:[10,10,10,10],
+    filename:'金門三日旅遊行程.pdf',
+    image:{type:'jpeg',quality:0.92},
+    html2canvas:{scale:1.5,useCORS:true,allowTaint:true,scrollY:0},
+    jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},
+    pagebreak:{mode:['avoid-all','css','legacy']}
+  }).from(document.body).save().then(function(){btn.style.display='block'});
+}
+</script>
+</body>
+</html>

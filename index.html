@@ -154,6 +154,121 @@
 
   .hero-date-pill{text-decoration:none;cursor:pointer;transition:background 0.2s,transform 0.2s;}
   .hero-date-pill:hover{background:rgba(255,255,255,0.22);transform:translateY(-2px);}
+
+  .flight-block{
+    background:#fff;
+    border-radius:12px;
+    padding:16px 20px;
+    margin-bottom:32px;
+    box-shadow:0 2px 12px rgba(27,79,114,0.10);
+    border-left:4px solid var(--ocean);
+  }
+  .day1-section .flight-block{border-left-color:var(--sorghum);}
+  .day1-section .flight-block .flight-block-title{color:var(--sorghum);}
+  .day1-section .flight-block .flight-time{color:var(--sorghum);}
+  .day1-section .flight-block .flight-pill{background:rgba(139,37,0,0.08);color:var(--sorghum);}
+  .day3-section .flight-block{border-left-color:var(--gold);}
+  .flight-block-title{
+    font-family:'Noto Serif TC',serif;
+    font-size:15px;font-weight:700;
+    color:var(--ocean);
+    margin-bottom:12px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .day3-section .flight-block .flight-block-title{color:var(--stone);}
+  .flight-row{
+    display:flex;flex-wrap:wrap;gap:8px;
+    align-items:flex-start;
+    padding:10px 0;
+    border-bottom:1px solid rgba(0,0,0,0.06);
+  }
+  .flight-row:last-child{border-bottom:none;padding-bottom:0;}
+  .flight-route{font-size:16px;font-weight:700;letter-spacing:1px;flex:0 0 100%;}
+  .flight-time{font-size:22px;font-weight:900;color:var(--ocean);letter-spacing:1px;}
+  .day3-section .flight-block .flight-time{color:var(--stone);}
+  .flight-arrow{font-size:18px;color:var(--stone-light);align-self:center;}
+  .flight-pill{
+    display:inline-flex;align-items:center;gap:4px;
+    font-size:12px;padding:3px 10px;border-radius:20px;
+    background:rgba(27,79,114,0.08);color:var(--ocean);
+    white-space:nowrap;
+  }
+  .day3-section .flight-block .flight-pill{background:rgba(201,168,76,0.12);color:var(--stone);}
+  @media(max-width:600px){
+    .flight-time{font-size:18px;}
+  }
+
+  /* ── 天氣預報區塊 ── */
+  .weather-section{
+    background:linear-gradient(135deg,#0A2A4A 0%,#1B4F72 60%,#2874A6 100%);
+    padding:48px 20px;
+  }
+  .weather-inner{
+    max-width:960px;margin:0 auto;
+  }
+  .weather-header{
+    display:flex;align-items:center;gap:12px;
+    margin-bottom:28px;
+  }
+  .weather-title{
+    font-family:'Noto Serif TC',serif;
+    font-size:20px;font-weight:700;
+    color:rgba(255,255,255,0.95);
+    letter-spacing:2px;
+  }
+  .weather-subtitle{
+    font-size:12px;color:rgba(255,255,255,0.5);
+    margin-top:2px;letter-spacing:1px;
+  }
+  .weather-cards{
+    display:flex;gap:12px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    padding-bottom:4px;
+  }
+  .weather-cards::-webkit-scrollbar{display:none;}
+  .weather-card{
+    flex:1;min-width:140px;
+    background:rgba(255,255,255,0.10);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:16px;
+    padding:18px 14px;
+    text-align:center;
+    backdrop-filter:blur(8px);
+    transition:background 0.2s,transform 0.2s;
+    cursor:default;
+  }
+  .weather-card:hover{
+    background:rgba(255,255,255,0.16);
+    transform:translateY(-3px);
+  }
+  .weather-card.today{
+    background:rgba(201,168,76,0.22);
+    border-color:rgba(201,168,76,0.45);
+  }
+  .wc-date{font-size:11px;color:rgba(255,255,255,0.55);letter-spacing:1px;margin-bottom:2px;}
+  .wc-dow{font-size:13px;font-weight:700;color:#fff;margin-bottom:10px;}
+  .wc-icon{font-size:36px;line-height:1;margin-bottom:8px;}
+  .wc-condition{font-size:11px;color:rgba(255,255,255,0.7);margin-bottom:10px;min-height:16px;}
+  .wc-temp{font-size:26px;font-weight:900;color:#FFF9C4;letter-spacing:-1px;}
+  .wc-temp span{font-size:14px;font-weight:400;opacity:0.7;}
+  .wc-rain{
+    display:inline-flex;align-items:center;gap:4px;
+    margin-top:8px;font-size:11px;
+    color:rgba(255,255,255,0.65);
+    background:rgba(255,255,255,0.10);
+    border-radius:20px;padding:2px 8px;
+  }
+  .weather-note{
+    margin-top:16px;
+    font-size:11px;color:rgba(255,255,255,0.35);
+    text-align:right;letter-spacing:1px;
+  }
+  @media(max-width:600px){
+    .weather-card{min-width:110px;padding:14px 10px;}
+    .wc-icon{font-size:28px;}
+    .wc-temp{font-size:22px;}
+  }
 </style>
 </head>
 <body>
@@ -193,6 +308,21 @@
 </div>
 
 <!-- DAY 1 -->
+<div class="weather-section">
+  <div class="weather-inner">
+    <div class="weather-header">
+      <div>
+        <div class="weather-title">🌤 金門天氣預報</div>
+        <div class="weather-subtitle">未來五天 · 即時更新</div>
+      </div>
+    </div>
+    <div class="weather-cards" id="weather-cards">
+      <div style="color:rgba(255,255,255,0.4);font-size:13px;padding:20px">載入中…</div>
+    </div>
+    <div class="weather-note">資料來源：Open-Meteo · 金門縣（24.43°N, 118.32°E）</div>
+  </div>
+</div>
+
 <section class="section day1-section" id="day1">
   <div class="section-inner">
     <div class="day-label">
@@ -320,6 +450,25 @@
       </div>
     </div>
 
+    <div class="flight-block">
+      <div class="flight-block-title">✈️ 立榮航空 出發</div>
+      <div class="flight-row">
+      <div class="flight-route">松山 TSA → 金門 KNH</div>
+      <div class="flight-time">10:45</div>
+      <div class="flight-arrow">→</div>
+      <div class="flight-time">11:50</div>
+        <span class="flight-pill">📅 6/12（五）</span>
+        <span class="flight-pill">✈ 航班 B7-8811</span>
+        </div>
+      <div class="flight-row">
+      <div class="flight-route">台中 RMQ → 金門 KNH</div>
+      <div class="flight-time">11:00</div>
+      <div class="flight-arrow">→</div>
+      <div class="flight-time">12:05</div>
+        <span class="flight-pill">📅 6/12（五）</span>
+        <span class="flight-pill">✈ 航班 B7-8957</span>
+        </div>
+      </div>
     <div class="timeline">
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 —</div><div class="stop-arrive">抵達 12:05</div></div>
@@ -338,7 +487,7 @@
           <div class="stop-name"><span>🦪</span>石蚵之家</div>
           <div class="stop-meta"><span class="meta-pill">🚗 8.3 km · 12 分</span><span class="meta-pill">⏱ 停留 60 分</span></div>
           <div class="stop-address">📍 892 金門縣金寧鄉古寧村林厝50號之6號</div>
-          <div class="stop-note">或去馬家麵線、石蚵之家、聯泰餐廳、金門牛家莊</div>
+          <div class="stop-note">或去馬家麵線、石蚵之家、聯泰餐廳</div>
         
           <a class="map-link" href="https://maps.google.com/?q=石蚵之家+金門縣金寧鄉古寧村林厝50號之6號" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 石蚵之家</a>
         </div>
@@ -380,7 +529,7 @@
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 17:24</div><div class="stop-arrive">抵達 17:40</div></div>
         <div class="stop-card">
-          <div class="stop-name"><span>🌿</span>紫微庭園美食 <span class="highlight-tag">待訂位</span></div>
+          <div class="stop-name"><span>🌿</span>紫微庭園美食 <span class="highlight-tag" style="background:#1a7a3c;color:#fff;">18:00已電話訂位</span></div>
           <div class="stop-meta"><span class="meta-pill">🚗 8.3 km · 16 分</span><span class="meta-pill">⏱ 停留 90 分</span></div>
           <div class="stop-address">📍 892 金門縣金寧鄉后盤山35號</div>
         
@@ -390,15 +539,14 @@
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 19:10</div><div class="stop-arrive">抵達 19:21</div></div>
         <div class="stop-card">
-          <div class="stop-name"><span>🌃</span>夜景選項（三擇一）</div>
+          <div class="stop-name"><span>🌃</span>金門夜景</div>
           <div class="options-block">
-            <div class="option-row"><span class="option-tag">選項1</span><span>🏙️ <b>莒光樓</b>（人文夜景）— 893 金門縣金城鎮東門里賢城路1號</span></div>
-            <div class="option-row"><span class="option-tag">選項2</span><span>🌉 <b>金門大橋</b>（廈門夜景）— 892 金門縣金寧鄉慈湖路二段</span></div>
-            <div class="option-row"><span class="option-tag">選項3</span><span>☕ <b>同安渡船頭 / 慈湖海堤</b>（咖啡廳看海走沙灘，順便賭藍眼淚）— 892 金門縣金寧鄉</span></div>
+            <div class="option-row"><span class="option-tag">選項1</span><span>☕ <b>同安渡船頭 / 慈湖海堤</b>（咖啡廳看海走沙灘，順便賭藍眼淚）— 892 金門縣金寧鄉</span></div>
+            <div class="option-row"><span class="option-tag">選項2</span><span>🏙️ <b>莒光樓</b>（人文夜景）— 893 金門縣金城鎮東門里賢城路1號</span></div>
           </div>
         
-          <a class="map-link" href="https://maps.google.com/?q=莒光樓+金門縣金城鎮東門里賢城路1號" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 莒光樓（夜景選項）</a>
-          <a class="kinmen-link" href="https://www.kinmen.travel/zh-tw/travel/attraction/389" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg> 金門觀光旅遊網 · 莒光樓</a>
+          <a class="map-link" href="https://maps.app.goo.gl/qwSFunvftmpBPYob6" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 同安渡船頭</a>
+          <a class="kinmen-link" href="https://kinmen.travel/zh-tw/travel/attraction/1398" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg> 金門觀光旅遊網 · 同安渡船頭</a>
         </div>
       </div>
     </div>
@@ -529,11 +677,11 @@
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 11:06</div><div class="stop-arrive">抵達 11:26</div></div>
         <div class="stop-card">
-          <div class="stop-name"><span>🛍️</span>合泉購物中心</div>
+          <div class="stop-name"><span>🍜</span>金拌麵</div>
           <div class="stop-meta"><span class="meta-pill">🚗 12.0 km · 20 分</span><span class="meta-pill">⏱ 停留 60 分</span><span class="meta-pill">🍜 金拌麵</span></div>
           <div class="stop-address">📍 891 金門縣金湖鎮瓊林里63號</div>
         
-          <a class="map-link" href="https://maps.google.com/?q=合泉購物中心+金門縣金湖鎮瓊林里63號" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 合泉購物中心</a>
+          <a class="map-link" href="https://maps.app.goo.gl/KucLQFyS8GGoWVYk9" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 金拌麵</a>
         </div>
       </div>
       <div class="stop">
@@ -550,18 +698,18 @@
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 13:42</div><div class="stop-arrive">抵達 13:48</div></div>
         <div class="stop-card">
-          <div class="stop-name"><span>🚌</span>山外車站</div>
+          <div class="stop-name"><span>🚌</span>山外車站＋擎天廳導覽</div>
           <div class="stop-meta"><span class="meta-pill">🚗 3.4 km · 6 分</span><span class="meta-pill">⏱ 停留 170 分</span></div>
           <div class="stop-address">📍 891 金門縣金湖鎮山外里黃海路90之1號</div>
         
-          <a class="map-link" href="https://maps.google.com/?q=山外車站+金門縣金湖鎮山外里黃海路90之1號" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 山外車站</a>
+          <a class="map-link" href="https://maps.google.com/?q=山外車站+金門縣金湖鎮山外里黃海路90之1號" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Google Maps 開啟 山外車站＋擎天廳導覽</a>
           <a class="kinmen-link" href="https://www.kinmen.travel/zh-tw/travel/attraction/1624" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg> 金門觀光旅遊網 · 山外車站</a>
         </div>
       </div>
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 16:38</div><div class="stop-arrive">抵達 16:40</div></div>
         <div class="stop-card">
-          <div class="stop-name"><span>🍶</span>良金牧場工廠總店 <span class="highlight-tag">待訂位</span></div>
+          <div class="stop-name"><span>🍶</span>良金牧場工廠總店 <span class="highlight-tag" style="background:#1a7a3c;color:#fff;">17:00已網路訂位</span></div>
           <div class="stop-meta"><span class="meta-pill">🚗 1.3 km · 2 分</span><span class="meta-pill">⏱ 停留 90 分</span></div>
           <div class="stop-address">📍 891 金門縣金湖鎮瓊林里魚村160號</div>
         
@@ -729,7 +877,7 @@
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 10:17</div><div class="stop-arrive">抵達 10:28</div></div>
         <div class="stop-card">
-          <div class="stop-name"><span>🏖️</span>沙溪堡 <span class="highlight-tag" style="background:#FFF3CD;color:#856404;border:1px solid #FFECB5;">待確認</span></div>
+          <div class="stop-name"><span>🏖️</span>沙溪堡 <span class="highlight-tag" style="background:#6c757d;color:#fff;">已取消</span></div>
           <div class="stop-meta"><span class="meta-pill">🚗 4.7 km · 11 分</span><span class="meta-pill">⏱ 停留 30 分</span></div>
           <div class="stop-address">📍 894 金門縣濱海大道</div>
           <div class="stop-note">街景看起來好像要走一段，隨機應變</div>
@@ -741,7 +889,7 @@
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 10:58</div><div class="stop-arrive">抵達 11:14</div></div>
         <div class="stop-card">
-          <div class="stop-name"><span>⛩️</span>九宮坑道 <span class="highlight-tag" style="background:#FFF3CD;color:#856404;border:1px solid #FFECB5;">待確認</span></div>
+          <div class="stop-name"><span>⛩️</span>九宮坑道</div>
           <div class="stop-meta"><span class="meta-pill">🚗 7.1 km · 16 分</span><span class="meta-pill">⏱ 停留 60 分</span></div>
           <div class="stop-note">沿海走</div>
         
@@ -752,7 +900,7 @@
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 12:14</div><div class="stop-arrive">抵達 12:19</div></div>
         <div class="stop-card">
-          <div class="stop-name"><span>🧱</span>將軍堡 <span class="highlight-tag" style="background:#FFF3CD;color:#856404;border:1px solid #FFECB5;">待確認</span></div>
+          <div class="stop-name"><span>🧱</span>將軍堡 <span class="highlight-tag" style="background:#6c757d;color:#fff;">已取消</span></div>
           <div class="stop-meta"><span class="meta-pill">🚗 2.2 km · 5 分</span><span class="meta-pill">⏱ 停留 10 分</span></div>
           <div class="stop-note">和沙溪堡二選一，回金門有點線</div>
         
@@ -763,7 +911,7 @@
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 12:29</div><div class="stop-arrive">抵達 12:48</div></div>
         <div class="stop-card">
-          <div class="stop-name"><span>🐄</span>金門牛家莊（滷牛肉料理）<span class="highlight-tag">待訂位</span></div>
+          <div class="stop-name"><span>🐄</span>金門牛家莊（滷牛肉料理）<span class="highlight-tag" style="background:#1a7a3c;color:#fff;">12:30已電話訂位</span></div>
           <div class="stop-meta"><span class="meta-pill">🚗 12.3 km · 19 分</span><span class="meta-pill">⏱ 停留 90 分</span></div>
           <div class="stop-address">📍 893 金門縣金城鎮南門里民族路318巷5號</div>
           <div class="stop-note">待訂位 / 有時間可以再去金城老街或馬家麵線</div>
@@ -793,6 +941,26 @@
       </div>
     </div>
   </div>
+
+    <div class="flight-block">
+      <div class="flight-block-title">✈️ 立榮航空 返航</div>
+      <div class="flight-row">
+      <div class="flight-route">金門 KNH → 松山 TSA</div>
+      <div class="flight-time">16:30</div>
+      <div class="flight-arrow">→</div>
+      <div class="flight-time">17:30</div>
+        <span class="flight-pill">📅 6/14（日）</span>
+        <span class="flight-pill">✈ 航班 B7-8822</span>
+        </div>
+      <div class="flight-row">
+      <div class="flight-route">金門 KNH → 台中 RMQ</div>
+      <div class="flight-time">18:20</div>
+      <div class="flight-arrow">→</div>
+      <div class="flight-time">19:20</div>
+        <span class="flight-pill">📅 6/14（日）</span>
+        <span class="flight-pill">✈ 航班 B7-8962</span>
+        </div>
+      </div>
 </section>
 
 <footer class="footer">
@@ -830,6 +998,68 @@ document.querySelectorAll('a[href^="#day"]').forEach(function(a){
     if(target){ target.scrollIntoView({behavior:'smooth', block:'start'}); }
   });
 });
+</script>
+
+<script>
+(function(){
+  // Map Open-Meteo WMO codes to emoji + label
+  function wmoInfo(code, isDay){
+    if(code===0) return {icon: isDay?'☀️':'🌙', label:'晴'};
+    if(code<=2)  return {icon:'🌤️', label:'多雲時晴'};
+    if(code===3) return {icon:'☁️', label:'陰'};
+    if(code<=49) return {icon:'🌫️', label:'霧'};
+    if(code<=59) return {icon:'🌦️', label:'毛毛雨'};
+    if(code<=69) return {icon:'🌧️', label:'雨'};
+    if(code<=79) return {icon:'🌨️', label:'雪'};
+    if(code<=82) return {icon:'🌧️', label:'陣雨'};
+    if(code<=84) return {icon:'⛈️', label:'大陣雨'};
+    if(code<=99) return {icon:'⛈️', label:'雷雨'};
+    return {icon:'🌡️', label:''};
+  }
+  function dowLabel(dateStr){
+    const days=['日','一','二','三','四','五','六'];
+    const d=new Date(dateStr+'T12:00:00');
+    return '週'+days[d.getDay()];
+  }
+  function formatDate(dateStr){
+    const p=dateStr.split('-');
+    return p[1]+'/'+p[2];
+  }
+
+  async function loadWeather(){
+    const container=document.getElementById('weather-cards');
+    if(!container) return;
+    try{
+      const res=await fetch(
+        'https://api.open-meteo.com/v1/forecast?latitude=24.4339&longitude=118.3187'+
+        '&daily=weathercode,temperature_2m_max,precipitation_probability_max'+
+        '&forecast_days=5&timezone=Asia%2FTaipei'
+      );
+      const data=await res.json();
+      const today=new Date().toISOString().slice(0,10);
+      let html='';
+      data.daily.time.forEach(function(date,i){
+        const code=data.daily.weathercode[i];
+        const tempC=Math.round(data.daily.temperature_2m_max[i]);
+        const rain=data.daily.precipitation_probability_max[i]||0;
+        const info=wmoInfo(code, true);
+        const isToday=date===today;
+        html+=`<div class="weather-card${isToday?' today':''}">
+          <div class="wc-date">${formatDate(date)}</div>
+          <div class="wc-dow">${isToday?'今天':dowLabel(date)}</div>
+          <div class="wc-icon">${info.icon}</div>
+          <div class="wc-condition">${info.label}</div>
+          <div class="wc-temp">${tempC}<span>°C</span></div>
+          <div class="wc-rain">💧 ${rain}%</div>
+        </div>`;
+      });
+      container.innerHTML=html;
+    } catch(e){
+      container.innerHTML='<div style="color:rgba(255,255,255,0.5);font-size:13px;padding:20px">天氣資料載入失敗，請稍後重試</div>';
+    }
+  }
+  loadWeather();
+})();
 </script>
 </body>
 </html>

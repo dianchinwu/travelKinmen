@@ -269,6 +269,33 @@
     .wc-icon{font-size:28px;}
     .wc-temp{font-size:22px;}
   }
+
+  /* ── 回到頂端懸浮按鈕 ── */
+  .back-top{
+    position:fixed;
+    bottom:96px;right:30px;
+    width:40px;height:40px;
+    border-radius:50%;
+    background:rgba(100,100,100,0.25);
+    border:1px solid rgba(255,255,255,0.2);
+    backdrop-filter:blur(6px);
+    color:rgba(255,255,255,0.7);
+    font-size:18px;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    opacity:0;pointer-events:none;
+    transition:opacity 0.3s,background 0.2s,transform 0.2s;
+    z-index:998;
+    text-decoration:none;
+  }
+  .back-top.visible{opacity:1;pointer-events:auto;}
+  .back-top:hover{
+    background:rgba(100,100,100,0.45);
+    transform:translateY(-2px);
+  }
+  @media(max-width:600px){
+    .back-top{bottom:80px;right:16px;}
+  }
 </style>
 </head>
 <body>
@@ -990,6 +1017,7 @@
   <div style="margin-top:8px;color:rgba(255,255,255,0.3);font-size:11px">行程如有異動，以現場為準 · 請隨時關注天氣與潮汐資訊</div>
 </footer>
 
+<button class="back-top" id="back-top" title="回到頂端" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <div class="pdf-btn-wrap" id="pdf-btn-wrap">
   <button class="pdf-btn" onclick="exportPDF()">
     <span>📄</span> 匯出 PDF
@@ -1080,6 +1108,15 @@ document.querySelectorAll('a[href^="#day"]').forEach(function(a){
     }
   }
   loadWeather();
+})();
+</script>
+
+<script>
+(function(){
+  var btn = document.getElementById('back-top');
+  window.addEventListener('scroll', function(){
+    btn.classList.toggle('visible', window.scrollY > 400);
+  }, {passive:true});
 })();
 </script>
 </body>

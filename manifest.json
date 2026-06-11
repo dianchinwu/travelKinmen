@@ -1,0 +1,20 @@
+{
+  "name": "金門三日旅遊行程",
+  "short_name": "金門行程",
+  "description": "2025年6月12–14日 金門三日遊完整行程",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1B4F72",
+  "theme_color": "#1B4F72",
+  "orientation": "portrait-primary",
+  "lang": "zh-TW",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%231B4F72' rx='24'/><text y='130' x='96' text-anchor='middle' font-size='120'>🌊</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["travel", "lifestyle"]
+}

@@ -4,7 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>金門旅遊行程</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700;900&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#1B4F72">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="金門行程">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700;900&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <style>
   :root{--sand:#E8D5B0;--sand-light:#F5ECD7;--ocean:#1B4F72;--ocean-mid:#2874A6;--ocean-light:#AED6F1;--sorghum:#8B2500;--sorghum-light:#C0392B;--gold:#C9A84C;--gold-light:#F0D080;--stone:#5D5341;--stone-light:#8C7B65;--cream:#FDFAF4;--dark:#1A1208}
@@ -296,10 +302,183 @@
   @media(max-width:600px){
     .back-top{bottom:80px;right:16px;}
   }
+
+  /* ── 備忘貼紙 ── */
+  .stop-card{ position:relative; }
+
+  .memo-btn{
+    position:absolute;top:12px;right:12px;
+    width:28px;height:28px;border-radius:50%;
+    background:rgba(0,0,0,0.06);
+    border:1px solid rgba(0,0,0,0.10);
+    color:#999;font-size:13px;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;transition:background 0.2s,color 0.2s;
+    z-index:2;flex-shrink:0;
+  }
+  .memo-btn:hover{ background:rgba(0,0,0,0.12); color:#555; }
+  .memo-btn.has-memo{ color:#C9A84C; border-color:rgba(201,168,76,0.5); background:rgba(201,168,76,0.10); }
+
+  .memo-box{
+    display:none;
+    margin-top:10px;
+    position:relative;
+  }
+  .memo-box.open{ display:block; }
+  .memo-textarea{
+    width:100%;min-height:72px;
+    border:1px solid rgba(201,168,76,0.4);
+    border-radius:8px;
+    padding:8px 10px;
+    font-family:'Noto Sans TC',sans-serif;
+    font-size:13px;line-height:1.6;
+    background:#FFFDF5;
+    color:#3a3020;
+    resize:vertical;
+    outline:none;
+    box-sizing:border-box;
+    transition:border-color 0.2s;
+  }
+  .memo-textarea:focus{ border-color:rgba(201,168,76,0.8); }
+  .memo-textarea::placeholder{ color:#bbb; }
+  .memo-actions{
+    display:flex;justify-content:flex-end;gap:8px;
+    margin-top:6px;
+  }
+  .memo-save{
+    font-size:12px;padding:4px 14px;border-radius:20px;
+    background:var(--gold);color:#fff;border:none;
+    cursor:pointer;font-family:'Noto Sans TC',sans-serif;
+    transition:background 0.2s;
+  }
+  .memo-save:hover{ background:#b8943e; }
+  .memo-clear{
+    font-size:12px;padding:4px 14px;border-radius:20px;
+    background:rgba(0,0,0,0.06);color:#888;border:none;
+    cursor:pointer;font-family:'Noto Sans TC',sans-serif;
+    transition:background 0.2s;
+  }
+  .memo-clear:hover{ background:rgba(0,0,0,0.12); }
+  .memo-saved-text{
+    font-size:12px;color:#C9A84C;
+    background:rgba(201,168,76,0.08);
+    border-left:3px solid rgba(201,168,76,0.5);
+    border-radius:0 6px 6px 0;
+    padding:6px 10px;margin-top:8px;
+    white-space:pre-wrap;line-height:1.6;
+    cursor:pointer;
+  }
+  .memo-saved-text::before{
+    content:'📝 ';font-size:11px;
+  }
+
+  /* ── 備忘貼紙 ── */
+  .note-btn{
+    position:absolute;top:12px;right:12px;
+    width:28px;height:28px;border-radius:50%;
+    background:transparent;border:1.5px solid #ddd;
+    color:#bbb;font-size:14px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:background 0.2s,border-color 0.2s,color 0.2s;
+    z-index:2;padding:0;line-height:1;
+  }
+  .note-btn:hover,.note-btn.has-note{
+    background:#FFF9C4;border-color:#F4D03F;color:#7D6608;
+  }
+  /* modal overlay */
+  .note-overlay{
+    display:none;position:fixed;inset:0;
+    background:rgba(0,0,0,0.45);z-index:9999;
+    align-items:center;justify-content:center;
+    padding:20px;
+  }
+  .note-overlay.open{display:flex;}
+  .note-modal{
+    background:#FFFEF5;border-radius:16px;
+    width:100%;max-width:420px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.25);
+    overflow:hidden;
+  }
+  .note-modal-header{
+    background:#FFF9C4;border-bottom:1px solid #F4D03F;
+    padding:14px 18px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .note-modal-title{
+    font-family:'Noto Serif TC',serif;
+    font-size:15px;font-weight:700;color:#7D6608;
+    display:flex;align-items:center;gap:8px;
+  }
+  .note-modal-close{
+    background:none;border:none;font-size:20px;
+    color:#7D6608;cursor:pointer;padding:0;line-height:1;
+  }
+  .note-modal-body{padding:16px 18px;}
+  .note-modal-spot{
+    font-size:12px;color:#888;margin-bottom:8px;letter-spacing:1px;
+  }
+  .note-textarea{
+    width:100%;min-height:120px;
+    border:1.5px solid #F4D03F;border-radius:10px;
+    padding:12px;font-size:14px;
+    font-family:'Noto Sans TC',sans-serif;
+    color:#333;background:#FFFEF5;
+    resize:vertical;outline:none;
+    transition:border-color 0.2s;
+    box-sizing:border-box;
+  }
+  .note-textarea:focus{border-color:#D4AC0D;}
+  .note-modal-footer{
+    padding:12px 18px 16px;
+    display:flex;gap:8px;justify-content:flex-end;
+  }
+  .note-save-btn{
+    background:#F4D03F;border:none;
+    padding:8px 20px;border-radius:20px;
+    font-family:'Noto Sans TC',sans-serif;
+    font-size:13px;font-weight:600;color:#7D6608;
+    cursor:pointer;transition:background 0.2s;
+  }
+  .note-save-btn:hover{background:#D4AC0D;color:#fff;}
+  .note-clear-btn{
+    background:transparent;border:1.5px solid #ddd;
+    padding:8px 16px;border-radius:20px;
+    font-family:'Noto Sans TC',sans-serif;
+    font-size:13px;color:#aaa;
+    cursor:pointer;transition:background 0.2s;
+  }
+  .note-clear-btn:hover{background:#f5f5f5;}
+  /* inline note preview under card buttons */
+  .note-preview{
+    margin-top:8px;font-size:12px;color:#7D6608;
+    background:#FFF9C4;border-left:3px solid #F4D03F;
+    border-radius:0 6px 6px 0;
+    padding:6px 10px;line-height:1.5;
+    white-space:pre-wrap;display:none;
+  }
+  .note-preview.visible{display:block;}
+
+  /* ── 離線提示 ── */
+  .offline-banner{
+    display:none;position:fixed;top:0;left:0;right:0;
+    background:#C0392B;color:#fff;
+    text-align:center;padding:10px 20px;
+    font-size:13px;letter-spacing:1px;z-index:10000;
+    box-shadow:0 2px 12px rgba(0,0,0,0.3);
+  }
+  .offline-banner.show{display:block;}
 </style>
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1B4F72">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="金門三日遊">
 </head>
 <body>
 
+<div class="offline-banner" id="offline-banner">📵 目前離線中 — 顯示快取版本，天氣資訊暫不可用</div>
 <header class="hero">
   <div class="hero-bg"></div>
   <div class="lanterns">
@@ -499,7 +678,8 @@
     <div class="timeline">
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 —</div><div class="stop-arrive">抵達 12:05</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-1">
+          <button class="memo-btn" onclick="toggleMemo('card-1')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>✈️</span>金門機場</div>
           <div class="stop-meta"><span class="meta-pill">⏱ 停留 60 分</span><span class="meta-pill">🚗 取車</span></div>
           <div class="stop-note">取行李 + 車（預計租車時間 12:30）</div>
@@ -510,7 +690,8 @@
       </div>
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 13:05</div><div class="stop-arrive">抵達 13:17</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-2">
+          <button class="memo-btn" onclick="toggleMemo('card-2')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>🦪</span>石蚵之家</div>
           <div class="stop-meta"><span class="meta-pill">🚗 8.3 km · 12 分</span><span class="meta-pill">⏱ 停留 60 分</span></div>
           <div class="stop-address">📍 892 金門縣金寧鄉古寧村林厝50號之6號</div>
@@ -521,7 +702,8 @@
       </div>
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 14:27</div><div class="stop-arrive">抵達 14:40</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-3">
+          <button class="memo-btn" onclick="toggleMemo('card-3')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>🏝️</span>建功嶼</div>
           <div class="stop-meta"><span class="meta-pill">🚗 7.4 km · 13 分</span><span class="meta-pill">⏱ 停留 30 分</span></div>
           <div class="stop-address">📍 導航延平郡王祠旁邊</div>
@@ -533,7 +715,8 @@
       </div>
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 15:10</div><div class="stop-arrive">抵達 15:19</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-4">
+          <button class="memo-btn" onclick="toggleMemo('card-4')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>🛖</span>微醺民宿</div>
           <div class="stop-meta"><span class="meta-pill">🚗 3.9 km · 9 分</span><span class="meta-pill">⏱ 停留 60 分</span></div>
           <div class="stop-address">📍 893 金門縣金城鎮（TipsyHotel）</div>
@@ -543,7 +726,8 @@
       </div>
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 16:19</div><div class="stop-arrive">抵達 16:24</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-5">
+          <button class="memo-btn" onclick="toggleMemo('card-5')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>🏯</span>得月樓</div>
           <div class="stop-meta"><span class="meta-pill">🚗 1.5 km · 5 分</span><span class="meta-pill">⏱ 停留 60 分</span></div>
           <div class="stop-address">📍 893 金門縣金城鎮金水里前水頭45號</div>
@@ -555,7 +739,8 @@
       </div>
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 17:24</div><div class="stop-arrive">抵達 17:40</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-6">
+          <button class="memo-btn" onclick="toggleMemo('card-6')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>🌿</span>紫微庭園美食 <span class="highlight-tag" style="background:#1a7a3c;color:#fff;">18:00已電話訂位</span></div>
           <div class="stop-meta"><span class="meta-pill">🚗 8.3 km · 16 分</span><span class="meta-pill">⏱ 停留 90 分</span></div>
           <div class="stop-address">📍 892 金門縣金寧鄉后盤山35號</div>
@@ -565,7 +750,8 @@
       </div>
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 19:10</div><div class="stop-arrive">抵達 19:21</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-7">
+          <button class="memo-btn" onclick="toggleMemo('card-7')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>🌃</span>金門夜景</div>
           <div class="options-block">
             <div class="option-row"><span class="option-tag">選項1</span><span>☕ <b>同安渡船頭 / 慈湖海堤</b>（咖啡廳看海走沙灘，順便賭藍眼淚）— 892 金門縣金寧鄉</span></div>
@@ -692,7 +878,8 @@
     <div class="timeline">
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 —</div><div class="stop-arrive">抵達 10:00</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-8">
+          <button class="memo-btn" onclick="toggleMemo('card-8')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>⛵</span>翟山坑道</div>
           <div class="stop-meta"><span class="meta-pill">⏱ 停留 60 分</span></div>
           <div class="stop-address">📍 893 金門縣金城鎮90號</div>
@@ -703,7 +890,8 @@
       </div>
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 11:06</div><div class="stop-arrive">抵達 11:26</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-9">
+          <button class="memo-btn" onclick="toggleMemo('card-9')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>🍜</span>金拌麵</div>
           <div class="stop-meta"><span class="meta-pill">🚗 12.0 km · 20 分</span><span class="meta-pill">⏱ 停留 60 分</span></div>
           <div class="stop-address">📍 891 金門縣金湖鎮瓊林里63號</div>
@@ -713,7 +901,8 @@
       </div>
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 12:56</div><div class="stop-arrive">抵達 13:02</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-10">
+          <button class="memo-btn" onclick="toggleMemo('card-10')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>🏛️</span>陳景蘭洋樓</div>
           <div class="stop-meta"><span class="meta-pill">🚗 1.9 km · 6 分</span><span class="meta-pill">⏱ 停留 40 分</span></div>
           <div class="stop-address">📍 891 金門縣金湖鎮</div>
@@ -724,7 +913,8 @@
       </div>
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 13:42</div><div class="stop-arrive">抵達 13:48</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-11">
+          <button class="memo-btn" onclick="toggleMemo('card-11')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>🚌</span>山外車站＋擎天廳導覽</div>
           <div class="stop-meta"><span class="meta-pill">🚗 3.4 km · 6 分</span><span class="meta-pill">⏱ 停留 170 分</span></div>
           <div class="stop-address">📍 891 金門縣金湖鎮山外里黃海路90之1號</div>
@@ -756,7 +946,8 @@
       </div>
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 16:38</div><div class="stop-arrive">抵達 16:40</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-12">
+          <button class="memo-btn" onclick="toggleMemo('card-12')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>🍶</span>良金牧場工廠總店 <span class="highlight-tag" style="background:#1a7a3c;color:#fff;">17:00已網路訂位</span></div>
           <div class="stop-meta"><span class="meta-pill">🚗 1.3 km · 2 分</span><span class="meta-pill">⏱ 停留 90 分</span></div>
           <div class="stop-address">📍 891 金門縣金湖鎮瓊林里魚村160號</div>
@@ -766,7 +957,8 @@
       </div>
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 18:10</div><div class="stop-arrive">抵達 18:15</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-13">
+          <button class="memo-btn" onclick="toggleMemo('card-13')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>🌅</span>成功沙灘</div>
           <div class="stop-meta"><span class="meta-pill">🚗 2.2 km · 5 分</span><span class="meta-pill">🌇 看夕陽</span></div>
           <div class="stop-address">📍 891 金門縣金湖鎮</div>
@@ -777,7 +969,8 @@
       </div>
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 18:55</div><div class="stop-arrive">抵達 19:09</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-14">
+          <button class="memo-btn" onclick="toggleMemo('card-14')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>🎖️</span>清金門鎮總兵署（浯江新莊）</div>
           <div class="stop-meta"><span class="meta-pill">🚗 8.5 km · 14 分</span><span class="meta-pill">⏱ 停留 120 分</span></div>
           <div class="stop-address">📍 893 金門縣金城鎮北門里浯江街53號</div>
@@ -902,7 +1095,8 @@
     <div class="timeline">
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 08:00</div><div class="stop-arrive">抵達 08:21</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-15">
+          <button class="memo-btn" onclick="toggleMemo('card-15')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>🏰</span>勇士堡</div>
           <div class="stop-meta"><span class="meta-pill">🚗 13.4 km · 21 分</span><span class="meta-pill">⏱ 停留 90 分</span></div>
           <div class="stop-address">📍 894 金門縣烈嶼鄉（停車後可從地下通道走到鐵漢堡）</div>
@@ -914,7 +1108,8 @@
       </div>
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 09:51</div><div class="stop-arrive">抵達 09:57</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-16">
+          <button class="memo-btn" onclick="toggleMemo('card-16')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>🌊</span>雙口海灘</div>
           <div class="stop-meta"><span class="meta-pill">🚗 3.3 km · 6 分</span><span class="meta-pill">⏱ 停留 20 分</span></div>
         
@@ -924,7 +1119,8 @@
       </div>
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 10:17</div><div class="stop-arrive">抵達 10:28</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-17">
+          <button class="memo-btn" onclick="toggleMemo('card-17')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>🏖️</span>沙溪堡 <span class="highlight-tag" style="background:#6c757d;color:#fff;">已取消</span></div>
           <div class="stop-meta"><span class="meta-pill">🚗 4.7 km · 11 分</span><span class="meta-pill">⏱ 停留 30 分</span></div>
           <div class="stop-address">📍 894 金門縣濱海大道</div>
@@ -936,7 +1132,8 @@
       </div>
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 10:58</div><div class="stop-arrive">抵達 11:14</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-18">
+          <button class="memo-btn" onclick="toggleMemo('card-18')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>⛩️</span>九宮坑道</div>
           <div class="stop-meta"><span class="meta-pill">🚗 7.1 km · 16 分</span><span class="meta-pill">⏱ 停留 60 分</span></div>
           <div class="stop-note">沿海走</div>
@@ -947,7 +1144,8 @@
       </div>
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 12:14</div><div class="stop-arrive">抵達 12:19</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-19">
+          <button class="memo-btn" onclick="toggleMemo('card-19')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>🧱</span>將軍堡 <span class="highlight-tag" style="background:#6c757d;color:#fff;">已取消</span></div>
           <div class="stop-meta"><span class="meta-pill">🚗 2.2 km · 5 分</span><span class="meta-pill">⏱ 停留 10 分</span></div>
           <div class="stop-note">和沙溪堡二選一，回金門有點線</div>
@@ -958,7 +1156,8 @@
       </div>
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 12:29</div><div class="stop-arrive">抵達 12:48</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-20">
+          <button class="memo-btn" onclick="toggleMemo('card-20')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>🐄</span>金門牛家莊（滷牛肉料理）<span class="highlight-tag" style="background:#1a7a3c;color:#fff;">12:30已電話訂位</span></div>
           <div class="stop-meta"><span class="meta-pill">🚗 12.3 km · 19 分</span><span class="meta-pill">⏱ 停留 90 分</span></div>
           <div class="stop-address">📍 893 金門縣金城鎮南門里民族路318巷5號</div>
@@ -969,7 +1168,8 @@
       </div>
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 14:18</div><div class="stop-arrive">抵達 14:32</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-21">
+          <button class="memo-btn" onclick="toggleMemo('card-21')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>🐟</span>老屋ㄉ蚵嗲</div>
           <div class="stop-meta"><span class="meta-pill">🚗 8.6 km · 14 分</span><span class="meta-pill">⏱ 停留 20 分</span></div>
           <div class="stop-address">📍 891 金門縣金湖鎮正義里成功村64號</div>
@@ -979,7 +1179,8 @@
       </div>
       <div class="stop">
         <div class="stop-left"><div class="stop-depart">出發 14:52</div><div class="stop-arrive">抵達 14:58</div></div>
-        <div class="stop-card">
+        <div class="stop-card" id="card-22">
+          <button class="memo-btn" onclick="toggleMemo('card-22')" title="新增備忘">✏️</button>
           <div class="stop-name"><span>✈️</span>金門機場（返航）</div>
           <div class="stop-meta"><span class="meta-pill">🚗 3.9 km · 6 分</span><span class="meta-pill">🏠 返回台灣</span></div>
         
@@ -1117,6 +1318,236 @@ document.querySelectorAll('a[href^="#day"]').forEach(function(a){
   window.addEventListener('scroll', function(){
     btn.classList.toggle('visible', window.scrollY > 400);
   }, {passive:true});
+})();
+</script>
+
+<script>
+// ── 備忘貼紙 ──────────────────────────────────────────────────
+function memoKey(cardId){ return 'memo::' + cardId; }
+
+function toggleMemo(cardId){
+  var card = document.getElementById(cardId);
+  var existing = card.querySelector('.memo-box');
+  if(existing){
+    existing.classList.toggle('open');
+    return;
+  }
+  // 建立輸入框
+  var saved = localStorage.getItem(memoKey(cardId)) || '';
+  var box = document.createElement('div');
+  box.className = 'memo-box open';
+  box.id = cardId + '-memo';
+
+  if(saved){
+    // 已有備忘：顯示已儲存文字，點擊進入編輯
+    box.innerHTML = renderSaved(cardId, saved);
+  } else {
+    box.innerHTML = renderEditor(cardId, '');
+  }
+  card.appendChild(box);
+}
+
+function renderSaved(cardId, text){
+  return '<div class="memo-saved-text" onclick="editMemo('' + cardId + '')">' +
+    escHtml(text) + '</div>';
+}
+
+function renderEditor(cardId, val){
+  return '<textarea class="memo-textarea" id="' + cardId + '-ta" placeholder="輸入備忘，例如：停車在附近巷子…">' +
+    escHtml(val) + '</textarea>' +
+    '<div class="memo-actions">' +
+    '<button class="memo-clear" onclick="clearMemo('' + cardId + '')">清除</button>' +
+    '<button class="memo-save" onclick="saveMemo('' + cardId + '')">儲存</button>' +
+    '</div>';
+}
+
+function editMemo(cardId){
+  var saved = localStorage.getItem(memoKey(cardId)) || '';
+  var box = document.getElementById(cardId + '-memo');
+  box.innerHTML = renderEditor(cardId, saved);
+  var ta = document.getElementById(cardId + '-ta');
+  ta.focus(); ta.selectionStart = ta.value.length;
+}
+
+function saveMemo(cardId){
+  var ta = document.getElementById(cardId + '-ta');
+  var val = ta.value.trim();
+  if(!val){ clearMemo(cardId); return; }
+  localStorage.setItem(memoKey(cardId), val);
+  var box = document.getElementById(cardId + '-memo');
+  box.innerHTML = renderSaved(cardId, val);
+  updateBtn(cardId, true);
+}
+
+function clearMemo(cardId){
+  localStorage.removeItem(memoKey(cardId));
+  var box = document.getElementById(cardId + '-memo');
+  if(box) box.classList.remove('open');
+  updateBtn(cardId, false);
+}
+
+function updateBtn(cardId, hasMemo){
+  var card = document.getElementById(cardId);
+  var btn = card.querySelector('.memo-btn');
+  if(btn) btn.classList.toggle('has-memo', hasMemo);
+}
+
+function escHtml(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// 頁面載入時恢復有備忘的按鈕樣式
+(function restoreMemos(){
+  for(var i=0;i<localStorage.length;i++){
+    var k=localStorage.key(i);
+    if(k && k.startsWith('memo::')){
+      var cardId=k.replace('memo::','');
+      updateBtn(cardId, true);
+    }
+  }
+})();
+</script>
+
+
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('sw.js')
+      .then(function(reg){ console.log('SW registered:', reg.scope); })
+      .catch(function(e){ console.log('SW error:', e); });
+  });
+}
+</script>
+
+<!-- 備忘貼紙 Modal -->
+<div class="note-overlay" id="note-overlay">
+  <div class="note-modal">
+    <div class="note-modal-header">
+      <div class="note-modal-title">✏️ 景點備忘</div>
+      <button class="note-modal-close" id="note-close">✕</button>
+    </div>
+    <div class="note-modal-body">
+      <div class="note-modal-spot" id="note-spot-label"></div>
+      <textarea class="note-textarea" id="note-textarea" placeholder="在這裡記下備忘事項…&#10;例如：停車在旁邊的小巷、推薦點蚵仔麵線"></textarea>
+    </div>
+    <div class="note-modal-footer">
+      <button class="note-clear-btn" id="note-clear">清除</button>
+      <button class="note-save-btn" id="note-save">儲存</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var overlay  = document.getElementById('note-overlay');
+  var textarea = document.getElementById('note-textarea');
+  var spotLabel= document.getElementById('note-spot-label');
+  var currentCardId = null;
+
+  function storageKey(id){ return 'note_' + id; }
+
+  function getNote(id){ return localStorage.getItem(storageKey(id)) || ''; }
+
+  function saveNote(id, text){
+    if(text.trim()){
+      localStorage.setItem(storageKey(id), text);
+    } else {
+      localStorage.removeItem(storageKey(id));
+    }
+  }
+
+  function updateCardUI(id){
+    var card = document.getElementById(id);
+    if(!card) return;
+    var btn  = card.querySelector('.note-btn');
+    var prev = card.querySelector('.note-preview');
+    var text = getNote(id);
+    if(text){
+      btn.classList.add('has-note');
+      if(prev){ prev.textContent = text; prev.classList.add('visible'); }
+    } else {
+      btn.classList.remove('has-note');
+      if(prev){ prev.textContent = ''; prev.classList.remove('visible'); }
+    }
+  }
+
+  function openModal(cardId, spotName){
+    currentCardId = cardId;
+    spotLabel.textContent = '📍 ' + spotName;
+    textarea.value = getNote(cardId);
+    overlay.classList.add('open');
+    setTimeout(function(){ textarea.focus(); }, 100);
+  }
+
+  function closeModal(){ overlay.classList.remove('open'); currentCardId = null; }
+
+  document.getElementById('note-close').addEventListener('click', closeModal);
+  document.getElementById('note-clear').addEventListener('click', function(){
+    textarea.value = '';
+  });
+  document.getElementById('note-save').addEventListener('click', function(){
+    if(!currentCardId) return;
+    saveNote(currentCardId, textarea.value);
+    updateCardUI(currentCardId);
+    closeModal();
+  });
+  overlay.addEventListener('click', function(e){
+    if(e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeModal();
+  });
+
+  // Init all cards
+  document.querySelectorAll('.stop-card[id]').forEach(function(card){
+    var id   = card.id;
+    var nameEl = card.querySelector('.stop-name');
+    var name = nameEl ? nameEl.textContent.trim().replace(/\s+/g,' ').slice(0,20) : id;
+
+    // pencil button
+    var btn = document.createElement('button');
+    btn.className = 'note-btn';
+    btn.title = '新增備忘';
+    btn.innerHTML = '✏️';
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      openModal(id, name);
+    });
+    card.appendChild(btn);
+
+    // preview div (below last child)
+    var prev = document.createElement('div');
+    prev.className = 'note-preview';
+    card.appendChild(prev);
+
+    updateCardUI(id);
+  });
+})();
+</script>
+
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('./sw.js')
+      .then(function(reg){
+        console.log('[PWA] Service Worker 已啟動', reg.scope);
+      })
+      .catch(function(err){
+        console.warn('[PWA] Service Worker 啟動失敗', err);
+      });
+  });
+}
+</script>
+
+<script>
+(function(){
+  var banner = document.getElementById('offline-banner');
+  function update(){
+    if(banner) banner.classList.toggle('show', !navigator.onLine);
+  }
+  window.addEventListener('online',  update);
+  window.addEventListener('offline', update);
+  update();
 })();
 </script>
 </body>
